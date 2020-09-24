@@ -8,7 +8,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="19db9c88-154d-4e52-8e6f-b67bb91fd1ec" name="Default Changelist" comment="SuperDuper first Commit" />
+    <list default="true" id="19db9c88-154d-4e52-8e6f-b67bb91fd1ec" name="Default Changelist" comment="SuperDuper first Commit">
+      <change afterPath="$PROJECT_DIR$/.idea/01 SuperDuperDrive.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -38,7 +42,7 @@
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="mavenHome" value="C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2020.1.4\plugins\maven\lib\maven3" />
+        <option name="mavenHome" value="$APPLICATION_HOME_DIR$/plugins/maven/lib/maven3" />
       </MavenGeneralSettings>
     </option>
     <option name="importingSettings">
@@ -56,11 +60,11 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/cloudstorage/src/main/java/com/udacity/jwdnd/course1/cloudstorage" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Global Libraries" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/cloudstorage" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.build" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -127,6 +131,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="SuperDuper first Commit" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="249" y="0" key="#Project_Structure" timestamp="1600968708534">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="249" y="0" key="#Project_Structure/0.0.1536.834@0.0.1536.834" timestamp="1600968708534" />
     <state x="574" y="124" key="#com.intellij.ide.util.MemberChooser" timestamp="1600707631022">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -139,10 +147,10 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="226" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.834@0.0.1536.834" timestamp="1600451421870" />
-    <state x="549" y="172" key="FileChooserDialogImpl" timestamp="1600882692508">
+    <state x="549" y="172" key="FileChooserDialogImpl" timestamp="1600968771050">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="549" y="172" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1600882692508" />
+    <state x="549" y="172" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1600968771050" />
     <state width="724" height="213" key="GridCell.Tab.0.bottom" timestamp="1600796307623">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -163,10 +171,10 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="170" y="138" key="RollbackChangesDialog/0.0.1536.834@0.0.1536.834" timestamp="1600813531366" />
-    <state x="277" y="62" key="SettingsEditor" timestamp="1600883082259">
+    <state x="277" y="62" key="SettingsEditor" timestamp="1600968655431">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="277" y="62" key="SettingsEditor/0.0.1536.834@0.0.1536.834" timestamp="1600883082259" />
+    <state x="277" y="62" key="SettingsEditor/0.0.1536.834@0.0.1536.834" timestamp="1600968655431" />
     <state x="361" y="150" key="Vcs.Push.Dialog.v2" timestamp="1600882706540">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
