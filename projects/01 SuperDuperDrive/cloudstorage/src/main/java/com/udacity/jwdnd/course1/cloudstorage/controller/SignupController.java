@@ -39,11 +39,11 @@ public class SignupController {
         }
 
         if(signupError == null) {
-            model.addAttribute("singupSuccess", true);
+            model.addAttribute("signupSuccess", true);
         } else{
-            model.addAttribute("singupError", signupError);
+            model.addAttribute("signupError", signupError);
         }
 
-        return "singup";
+        return "signup";
     }
 }
