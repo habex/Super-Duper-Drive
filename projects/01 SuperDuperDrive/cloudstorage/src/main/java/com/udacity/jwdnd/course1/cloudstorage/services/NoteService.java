@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 
-//@Service
+@Service
 public class NoteService {
     private NoteMapper noteMapper;
 
@@ -17,6 +17,11 @@ public class NoteService {
     @PostConstruct
     public void postConstruct(){
         System.out.println("Creating NoteService bean");
+    }
+
+    public void addNote(){
+        Note newNote = new Note();
+
     }
 
 }
