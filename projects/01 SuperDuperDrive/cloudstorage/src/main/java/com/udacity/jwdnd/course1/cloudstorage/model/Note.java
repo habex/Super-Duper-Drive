@@ -5,7 +5,8 @@ public class Note {
     private Integer noteId;
     private String noteTitle;
     private String noteDescription;
-    private Integer userid;
+    private Integer userId;
+    private Integer credentialId;
 
     public Integer getNoteId() {
         return noteId;
@@ -31,11 +32,19 @@ public class Note {
         this.noteDescription = noteDescription;
     }
 
-    public Integer getUserid() {
-        return userid;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setUserid(Integer userid) {
-        this.userid = userid;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public Integer getCredentialId() {
+        return credentialId;
+    }
+
+    public void setCredentialId(Integer credentialId) {
+        this.credentialId = credentialId;
     }
 }
