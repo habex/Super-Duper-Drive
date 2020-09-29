@@ -3,13 +3,12 @@ package com.udacity.jwdnd.course1.cloudstorage.controller;
 
 import com.udacity.jwdnd.course1.cloudstorage.model.Note;
 import com.udacity.jwdnd.course1.cloudstorage.services.NoteService;
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/home")
@@ -32,23 +31,15 @@ public class HomeController {
 
         this.noteService.addNote(note);
         model.addAttribute("notes",this.noteService.getNotes());
-
-        //return  "home";
     }
 
-  /* @PostMapping("/upload")
-    public String uploadFile (@RequestParam("file")MultipartFile file, RedirectAttributes attributes){
+   @PutMapping
+   public  void update(Note note){
+        noteService.update(note);
+   }
 
-        // check if file is empty
-        if (file.isEmpty()) {
-            attributes.addFlashAttribute("message", "Please select a file to upload.");
-            return "redirect:/home";
-        }
-
-        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-
-        attributes.addFlashAttribute(fileName);
-        return "/home";
-    }*/
-
+   @DeleteMapping
+    public void delete(Note note){
+        noteService.delete(note);
+   }
 }

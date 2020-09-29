@@ -79,10 +79,10 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="note : ${notes} " >
-                            <td>
-                                <button type="button" class="btn btn-success">Edit</button>
-                                <a class="btn btn-danger">Delete</a>
+                        <tr th:each="note : ${notes}" >
+                            <td >
+                                <button type="button" class="btn btn-success" onclick="updateNoteModal()">Edit</button>
+                                <a class="btn btn-danger" >Delete</a>
                             </td>
                             <th scope="row"> <span th:text="${note.noteTitle}"> Example Note Title</span></th>
                             <td> <span th:text = "${note.noteDescription}"> Example Note Description</span></td>
@@ -213,6 +213,15 @@
                 $('#note-id').val(noteId ? noteId : '');
                 $('#note-title').val(noteTitle ? noteTitle : '');
                 $('#note-description').val(noteDescription ? noteDescription : '');
+                $('#noteModal').modal('show');
+            }
+
+            // For opening the existing note modal
+            function updateNoteModal(noteId, noteTitle, noteDescription) {
+                var row = currentNote.getElementById
+                $('#note-id').val(noteId ? noteId : noteId);
+                $('#note-title').val(noteTitle ? noteTitle : noteTitle);
+                $('#note-description').val(noteDescription ? noteDescription : noteDescription);
                 $('#noteModal').modal('show');
             }
 

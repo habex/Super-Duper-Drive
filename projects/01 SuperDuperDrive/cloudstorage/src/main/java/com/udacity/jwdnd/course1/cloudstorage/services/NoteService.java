@@ -28,4 +28,15 @@ public class NoteService {
         return noteMapper.getAllNotes();
     }
 
+    public Note getNote(Note note){
+        return noteMapper.findById(note.getNoteId());
+    }
+
+    public void update(Note note){
+        noteMapper.update(note);
+    }
+
+    public void delete(Note note){
+        noteMapper.deleteById(note.getNoteId());
+    }
 }
