@@ -102,7 +102,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form th:object = "${note}" th:action = "@{/home}" action="#" method="POST">
+                                <form th:object = "${note}" th:action = "@{/home/note}" action="#" method="POST">
                                     <input type="hidden" name="noteId" id="note-id">
                                     <div class="form-group">
                                         <label for="note-title" class="col-form-label">Title</label>
@@ -134,7 +134,7 @@
                 </button>
 
                 <div class="table-responsive">
-                    <table class="table table-striped" th:object="${credentials}" id="credentialTable">
+                    <table class="table table-striped" id="credentialTable">
                         <thead>
                         <tr>
                             <th style="width: 20%" scope="col"></th>
@@ -144,14 +144,14 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
+                        <tr th:each = "credential : ${credentials}">
                             <td>
                                 <button type="button" class="btn btn-success">Edit</button>
                                 <a class="btn btn-danger">Delete</a>
                             </td>
-                            <th scope="row">Example Credential URL</th>
-                            <td>Example Credential Username</td>
-                            <td>Example Credential Password</td>
+                            <th scope="row"> <span th:text = "${credential.url}"> Example Credential URL</span></th>
+                            <td><span th:text="${credential.userName}"> Username</span></td>
+                            <td><span th:text="${credential.password}"> Example Credential Password</span></td>
                         </tr>
                         </tbody>
                     </table>
@@ -168,23 +168,24 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form action="#" method="POST">
-                                    <input type="hidden" name="credentialId" id="credential-id">
+                                <form th:object = "${credential}" th:action = "@{/home/credential}" action="#" method="POST">
+                                    <input type="hidden"Example Credential Username name="credentialId" id="credential-id">
                                     <div class="form-group">
-                                        <label for="note-title" class="col-form-label">URL</label>
+                                        <label for="credential-url" class="col-form-label">URL</label>
                                         <input type="text" name="url" class="form-control" id="credential-url"
                                                maxlength="100" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="note-title" class="col-form-label">Username</label>
-                                        <input type="text" name="username" class="form-control" id="credential-username"
+                                        <label for="credential-username" class="col-form-label">Username</label>
+                                        <input type="text" name="userName" class="form-control" id="credential-username"
                                                maxlength="30" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="note-title" class="col-form-label">Password</label>
+                                        <label for="credential-password" class="col-form-label">Password</label>
                                         <input type="text" name="password" class="form-control" id="credential-password"
                                                maxlength="30" required>
                                     </div>
+
                                     <button id="credentialSubmit" type="submit" class="d-none"></button>
                                 </form>
                             </div>
@@ -218,10 +219,10 @@
 
             // For opening the existing note modal
             function updateNoteModal(noteId, noteTitle, noteDescription) {
-                  }
+                 }
 
             // For opening the credentials modal
-            function showCredentialModal(credentialId, url, username, password) {
+            function showCredentialModal(credentialId, url, username, password,key) {
                 $('#credential-id').val(credentialId ? credentialId : '');
                 $('#credential-url').val(url ? url : '');
                 $('#credential-username').val(username ? username : '');

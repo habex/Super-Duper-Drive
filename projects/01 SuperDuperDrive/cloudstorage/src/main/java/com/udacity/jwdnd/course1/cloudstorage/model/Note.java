@@ -6,7 +6,6 @@ public class Note {
     private String noteTitle;
     private String noteDescription;
     private Integer userId;
-    private Integer credentialId;
 
     public Integer getNoteId() {
         return noteId;
@@ -40,11 +39,13 @@ public class Note {
         this.userId = userId;
     }
 
-    public Integer getCredentialId() {
-        return credentialId;
-    }
-
-    public void setCredentialId(Integer credentialId) {
-        this.credentialId = credentialId;
+    @Override
+    public String toString() {
+        return "Note{" +
+                "noteId=" + noteId +
+                ", noteTitle='" + noteTitle + '\'' +
+                ", noteDescription='" + noteDescription + '\'' +
+                ", userId=" + userId +
+                '}';
     }
 }
