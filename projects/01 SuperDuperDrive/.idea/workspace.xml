@@ -9,9 +9,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="19db9c88-154d-4e52-8e6f-b67bb91fd1ec" name="Default Changelist" comment="SuperDuper first Commit">
-      <change afterPath="$PROJECT_DIR$/.idea/01 SuperDuperDrive.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloudstorage/src/main/java/com/udacity/jwdnd/course1/cloudstorage/services/FileService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../01-spring-boot/17 chat-final-review-unitTest-selenium/src/main/java/com/udacity/jwdnd/c1/review/model/ChatForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../01-spring-boot/17 chat-final-review-unitTest-selenium/src/main/java/com/udacity/jwdnd/c1/review/model/ChatForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../01-spring-boot/17 chat-final-review-unitTest-selenium/src/main/java/com/udacity/jwdnd/c1/review/model/ChatMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../01-spring-boot/17 chat-final-review-unitTest-selenium/src/main/java/com/udacity/jwdnd/c1/review/model/ChatMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../01-spring-boot/17 chat-final-review-unitTest-selenium/src/main/java/com/udacity/jwdnd/c1/review/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../01-spring-boot/17 chat-final-review-unitTest-selenium/src/main/java/com/udacity/jwdnd/c1/review/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudstorage/src/main/java/com/udacity/jwdnd/course1/cloudstorage/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloudstorage/src/main/java/com/udacity/jwdnd/course1/cloudstorage/controller/HomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudstorage/src/main/java/com/udacity/jwdnd/course1/cloudstorage/mapper/FileMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloudstorage/src/main/java/com/udacity/jwdnd/course1/cloudstorage/mapper/FileMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudstorage/src/main/java/com/udacity/jwdnd/course1/cloudstorage/mapper/NoteMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloudstorage/src/main/java/com/udacity/jwdnd/course1/cloudstorage/mapper/NoteMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudstorage/src/main/java/com/udacity/jwdnd/course1/cloudstorage/model/FileUploadForm.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudstorage/src/main/java/com/udacity/jwdnd/course1/cloudstorage/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloudstorage/src/main/java/com/udacity/jwdnd/course1/cloudstorage/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudstorage/src/main/java/com/udacity/jwdnd/course1/cloudstorage/services/FileUploadService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudstorage/src/main/java/com/udacity/jwdnd/course1/cloudstorage/services/NoteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloudstorage/src/main/java/com/udacity/jwdnd/course1/cloudstorage/services/NoteService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudstorage/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/cloudstorage/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudstorage/src/main/resources/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/cloudstorage/src/main/resources/schema.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudstorage/src/main/resources/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/cloudstorage/src/main/resources/templates/home.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,10 +158,10 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="226" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.834@0.0.1536.834" timestamp="1600451421870" />
-    <state x="549" y="172" key="FileChooserDialogImpl" timestamp="1600968771050">
+    <state x="549" y="172" key="FileChooserDialogImpl" timestamp="1602001256630">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="549" y="172" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1600968771050" />
+    <state x="549" y="172" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1602001256630" />
     <state width="724" height="213" key="GridCell.Tab.0.bottom" timestamp="1600796307623">
       <screen x="0" y="0" width="1536" height="834" />
     </state>

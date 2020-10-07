@@ -20,13 +20,15 @@ public class NoteService {
         System.out.println("Creating NoteService bean");
     }
 
+    public List<Note> getNotes(){
+
+        return noteMapper.getAllNotes();
+    }
+
     public void addNote(Note note){
         noteMapper.addNote(note);
     }
 
-    public List<Note> getNotes(){
-        return noteMapper.getAllNotes();
-    }
 
     public Note getNote(Note note){
         return noteMapper.findById(note.getNoteId());

@@ -29,4 +29,13 @@ public class ChatForm {
     public void setMessageType(String messageType) {
         this.messageType = messageType;
     }
+
+    @Override
+    public String toString() {
+        return "ChatForm{" +
+                "username='" + username + '\'' +
+                ", messageText='" + messageText + '\'' +
+                ", messageType='" + messageType + '\'' +
+                '}';
+    }
 }

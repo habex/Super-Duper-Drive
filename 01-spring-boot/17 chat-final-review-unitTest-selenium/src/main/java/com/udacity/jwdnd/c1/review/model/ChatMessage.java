@@ -29,4 +29,13 @@ public class ChatMessage {
     public void setMessageText(String messageText) {
         this.messageText = messageText;
     }
+
+    @Override
+    public String toString() {
+        return "ChatMessage{" +
+                "messageId=" + messageId +
+                ", username='" + username + '\'' +
+                ", messageText='" + messageText + '\'' +
+                '}';
+    }
 }
