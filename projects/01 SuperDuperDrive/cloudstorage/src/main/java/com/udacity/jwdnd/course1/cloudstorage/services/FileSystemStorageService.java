@@ -1,5 +1,6 @@
 package com.udacity.jwdnd.course1.cloudstorage.services;
 
+
 import com.udacity.jwdnd.course1.cloudstorage.config.StorageProperties;
 import com.udacity.jwdnd.course1.cloudstorage.exceptions.StorageException;
 import com.udacity.jwdnd.course1.cloudstorage.exceptions.StorageFileNotFoundException;
@@ -20,7 +21,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.stream.Stream;
 
-//@Service
+@Service
 public class FileSystemStorageService implements StorageService {
 
 	private final Path rootLocation;

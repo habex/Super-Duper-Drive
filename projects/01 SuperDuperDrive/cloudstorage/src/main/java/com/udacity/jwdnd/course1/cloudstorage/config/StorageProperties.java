@@ -2,7 +2,7 @@ package com.udacity.jwdnd.course1.cloudstorage.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-@ConfigurationProperties
+@ConfigurationProperties("storage")
 public class StorageProperties {
 
 	/**

@@ -5,11 +5,8 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.nio.file.Path;
 import java.util.List;
-import java.util.stream.Stream;
 
 @Mapper
 public interface FileMapper {
@@ -18,7 +15,10 @@ public interface FileMapper {
     List<File> getAllFiles();
 
     @Select("SELECT * FROM FILES WHERE fileid = #{fileId}")
-    File getFile();
+    File getFile(Integer fileId);
+
+    @Select("SELECT * FROM FILES WHERE filename = #{fileName}")
+    File getFileByFileName(String fileName);
 
     @Insert("INSERT INTO FILES (filename, contenttype , filesize, userid) VALUES " +
             "(#{fileName}, #{contentType} , #{fileSize}, #{userId})")

@@ -20,9 +20,8 @@ public class NoteService {
         System.out.println("Creating NoteService bean");
     }
 
-    public List<Note> getNotes(){
-
-        return noteMapper.getAllNotes();
+    public List<Note> findAll(){
+        return noteMapper.findAll();
     }
 
     public void addNote(Note note){
@@ -30,8 +29,8 @@ public class NoteService {
     }
 
 
-    public Note getNote(Note note){
-        return noteMapper.findById(note.getNoteId());
+    public Note findNoteById(Integer noteId){
+        return noteMapper.findById(noteId);
     }
 
     public void update(Note note){
@@ -39,6 +38,6 @@ public class NoteService {
     }
 
     public void delete(Note note){
-        noteMapper.deleteById(note.getNoteId());
+        noteMapper.delete(note.getNoteId());
     }
 }

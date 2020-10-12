@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/home")
+@RequestMapping("/credential")
 public class CredentialController {
 
     private CredentialService credentialService;
@@ -19,7 +19,7 @@ public class CredentialController {
 
     }
 
-    @PostMapping(path = "/credential")
+    @PostMapping
     public String postCredential(Credential credential, Model model) {
         this.credentialService.addCredential(credential);
         model.addAttribute("credentials", this.credentialService.getCredentials());

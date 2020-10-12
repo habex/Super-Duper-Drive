@@ -26,6 +26,14 @@ public class FileService {
         return fileMapper.getAllFiles();
     }
 
+    public File getFile(Integer fileId){
+        return fileMapper.getFile(fileId);
+    }
+
+    public File getFileByFileName(String fileName){
+        return fileMapper.getFileByFileName(fileName);
+    }
+
     public void upLoad(File file ){
         fileMapper.upload(file);
     }

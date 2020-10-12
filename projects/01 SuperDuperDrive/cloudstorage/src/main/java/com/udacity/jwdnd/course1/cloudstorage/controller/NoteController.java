@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/home")
+@RequestMapping("/note")
 public class NoteController {
 
     private NoteService noteService;
@@ -18,21 +18,41 @@ public class NoteController {
     }
 
 
-    @PostMapping(path = "/note")
+    @PostMapping
     public String postNote(Note note, Model model) {
         this.noteService.addNote(note);
-        model.addAttribute("notes", this.noteService.getNotes());
+        model.addAttribute("notes", this.noteService.findAll());
         return "home";
     }
 
-    @PutMapping(path = "/note")
+    @PutMapping
     public String update(Note note) {
         noteService.update(note);
         return "home";
     }
 
-    @DeleteMapping (path = "/note")
-    public void delete(Note note) {
-        noteService.delete(note);
+   
+   /* @PutMapping(path = "/note/update/{noteId}")
+    public String updateNote(@PathVariable("noteId") Integer noteId, Note note,
+                             BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            note.setNoteId(noteId);
+            return "home";
+        }
+
+        this.noteService.update(note);
+        model.addAttribute("notes", this.noteService.findAll());
+        return "home";
+    }*/
+
+
+
+    @GetMapping ("/delete/{noteId}")
+    public String deleteNote(@PathVariable("noteId") Integer noteId, Model model) {
+        System.out.println("Note Id : "+noteId);
+        Note note = this.noteService.findNoteById(noteId);
+        this.noteService.delete(note);
+        model.addAttribute("notes", this.noteService.findAll());
+        return "home";
     }
 }
