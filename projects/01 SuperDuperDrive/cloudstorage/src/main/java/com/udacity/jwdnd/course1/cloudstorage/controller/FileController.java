@@ -1,20 +1,17 @@
 package com.udacity.jwdnd.course1.cloudstorage.controller;
 
-import com.udacity.jwdnd.course1.cloudstorage.exceptions.StorageException;
 import com.udacity.jwdnd.course1.cloudstorage.model.File;
 import com.udacity.jwdnd.course1.cloudstorage.services.FileService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.sql.rowset.serial.SerialBlob;
-import java.io.*;
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.StandardCopyOption;
+import java.io.IOException;
 import java.sql.Blob;
 import java.sql.SQLException;
 
@@ -57,18 +54,29 @@ public class FileController {
                 file1.setFileSize(file.getSize());
                 file1.setFileData(blobUtil(file));
                 this.fileService.upLoad(file1);
-                model.addAttribute("files", this.fileService.getAllFiles());
+                model.addAttribute("files", this.fileService.findAll());
                 model.addAttribute("message","You successfully uploaded " + file1.getFileName() + " !");
            }catch (IOException | SQLException e){
-
         }
-
-        model.addAttribute("files", this.fileService.getAllFiles());
+        model.addAttribute("files", this.fileService.findAll());
         return "home";
     }
 
-    public Blob blobUtil(MultipartFile file) throws IOException, SQLException {
+    @GetMapping ("/delete/{fileId}")
+    public String deleteFile(@PathVariable Integer fileId, Model model) {
+        int result = fileService.delete(fileId);
 
+        if(result>=1){
+            model.addAttribute("message","File deleted successfully !");
+        }else {
+            model.addAttribute("message","Unsuccessfully to delete the File !");
+        }
+        model.addAttribute("files", this.fileService.findAll());
+        return "home";
+    }
+
+
+    public Blob blobUtil(MultipartFile file) throws IOException, SQLException {
         Blob blob = new SerialBlob(file.getBytes());
         return blob;
      }

@@ -29,7 +29,7 @@ public class NoteService {
     }
 
 
-    public Note findNoteById(Integer noteId){
+    public Note findById(Integer noteId){
         return noteMapper.findById(noteId);
     }
 
@@ -37,7 +37,7 @@ public class NoteService {
         noteMapper.update(note);
     }
 
-    public void delete(Note note){
-        noteMapper.delete(note.getNoteId());
+    public int delete(Integer noteId){
+        return noteMapper.delete(noteId);
     }
 }

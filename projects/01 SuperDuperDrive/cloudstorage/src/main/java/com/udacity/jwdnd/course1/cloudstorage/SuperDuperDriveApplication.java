@@ -15,7 +15,7 @@ public class SuperDuperDriveApplication {
         SpringApplication.run(SuperDuperDriveApplication.class, args);
     }
 
-    @Bean
+   // @Bean
     CommandLineRunner init(StorageService storageService) {
         return (args) -> {
             storageService.deleteAll();

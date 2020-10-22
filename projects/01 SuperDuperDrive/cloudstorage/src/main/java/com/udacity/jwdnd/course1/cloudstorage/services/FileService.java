@@ -22,7 +22,7 @@ public class FileService {
         System.out.println("Creating FileService bean");
     }
 
-    public List<File> getAllFiles(){
+    public List<File> findAll(){
         return fileMapper.getAllFiles();
     }
 
@@ -36,5 +36,13 @@ public class FileService {
 
     public void upLoad(File file ){
         fileMapper.upload(file);
+    }
+
+    public File findFileById(Integer fileId) {
+       return fileMapper.findFileById(fileId);
+    }
+
+    public int delete(Integer fileId) {
+       return fileMapper.delete(fileId);
     }
 }

@@ -1,10 +1,8 @@
 package com.udacity.jwdnd.course1.cloudstorage.mapper;
 
 import com.udacity.jwdnd.course1.cloudstorage.model.Credential;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Options;
-import org.apache.ibatis.annotations.Select;
+import com.udacity.jwdnd.course1.cloudstorage.model.Note;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -12,16 +10,23 @@ import java.util.List;
 public interface CredentialMapper {
 
     @Select("SELECT * FROM CREDENTIALS")
-    List<Credential> getAllCredentials();
+    List<Credential> findAll();
+
+    @Select("SELECT * FROM CREDENTIALS WHERE credentialid = #{credentialId}")
+    Credential findById(@Param("credentialId") int credentialId);
 
     @Insert("INSERT INTO CREDENTIALS (url, username, key, password, userid) VALUES " +
             "(#{url}, #{userName}, #{key}, #{password}, #{userId})")
     @Options(useGeneratedKeys = true, keyProperty = "credentialId")
     int addCredential(Credential credential);
 
-    @Select("SELECT * FROM CREDENTIALS WHERE credentialid = #{credentialId}")
-    Credential getCredential(Integer credentialId);
+    @Update("UPDATE CREDENTIALS set url = #{url}, username = #{userName}, password = #{password}")
+    void update(Credential credential);
 
+
+
+    @Delete("DELETE FROM CREDENTIALS WHERE credentialid = #{credentialId}")
+    int delete(@Param("credentialId") int credentialId);
 
 
 }

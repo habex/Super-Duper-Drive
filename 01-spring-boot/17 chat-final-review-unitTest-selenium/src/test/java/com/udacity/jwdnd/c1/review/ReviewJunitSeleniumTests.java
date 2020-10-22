@@ -33,8 +33,8 @@ class ReviewJunitSeleniumTests {
 
 	@AfterAll
 	public static void  afterAll(){
-		driver.quit();
-		driver = null;
+		//driver.quit();
+		//driver = null;
 	}
 
 	@BeforeEach

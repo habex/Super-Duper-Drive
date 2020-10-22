@@ -25,7 +25,21 @@ public class CredentialService {
         credentialMapper.addCredential(credential);
     }
 
-    public List<Credential> getCredentials(){
-        return credentialMapper.getAllCredentials();
+    public List<Credential> findAll(){
+        return credentialMapper.findAll();
     }
+
+    public Credential findNoteById(Integer credentialId){
+        return credentialMapper.findById(credentialId);
+    }
+
+    public void update(Credential credential) {
+        credentialMapper.update(credential);
+    }
+
+    public int delete(Integer credentialId){
+       return credentialMapper.delete(credentialId);
+    }
+
+
 }
