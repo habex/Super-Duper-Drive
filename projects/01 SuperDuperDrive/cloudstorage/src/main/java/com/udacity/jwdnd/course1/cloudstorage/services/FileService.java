@@ -1,11 +1,17 @@
 package com.udacity.jwdnd.course1.cloudstorage.services;
 
 
+import com.udacity.jwdnd.course1.cloudstorage.exceptions.StorageFileNotFoundException;
 import com.udacity.jwdnd.course1.cloudstorage.mapper.FileMapper;
 import com.udacity.jwdnd.course1.cloudstorage.model.File;
+import com.udacity.jwdnd.course1.cloudstorage.model.File1;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import java.net.MalformedURLException;
+import java.nio.file.Path;
 import java.util.List;
 
 @Service
@@ -29,6 +35,7 @@ public class FileService {
     public File getFile(Integer fileId){
         return fileMapper.getFile(fileId);
     }
+
 
     public File getFileByFileName(String fileName){
         return fileMapper.getFileByFileName(fileName);

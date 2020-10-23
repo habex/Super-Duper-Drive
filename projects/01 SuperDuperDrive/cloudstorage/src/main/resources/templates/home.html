@@ -59,7 +59,7 @@
 
                         <tr th:each="file : ${files}">
                             <td>
-                                <a target="_blank" class="btn btn-success" th:href="${file.fileId}">View</a>
+                                <a target="_blank" class="btn btn-success" th:href="@{file/{fileName}(fileName=${file.fileId})}">View</a>
                                 <a th:href="@{/file/delete/{fileId}(fileId=${file.fileId})}" class="btn btn-danger">Delete</a>
                             </td>
                             <th scope="row"><span th:text="${file.fileName}"> ExampleFile.txt</span></th>
@@ -87,7 +87,7 @@
                         <tr th:id="${note.noteId}" th:each="note:${notes}" >
                             <td>
                                 <button type="button" class="btn btn-success" onclick="updateNoteModal(id)"  th:id="${note.noteId}">Edit</button>
-                                <a th:href="@{/note/delete/{noteId}(noteId=${note.noteId})}"  onclick="return confirm('Are you sure you want to delete this item?');" class="btn btn-danger">Delete</a>
+                                <a th:href="@{/note/delete/{noteId}(noteId=${note.noteId})}"  onclick="return confirm('Are you sure you want to delete this note?');" class="btn btn-danger">Delete</a>
                             </td>
                             <th  scope="row" th:text="${note.noteTitle}"><span > Example Note Title</span></th>
                             <td th:text="${note.noteDescription}"><span > Example Note Description</span></td>
@@ -154,7 +154,7 @@
                             <td>
                                 <button type="button" class="btn btn-success" onclick="updateCredentialModal(id)"  th:id= "${credential.credentialId}">Edit</button>
                                 <a th:href="@{/credential/delete/{credentialId}(credentialId=${credential.credentialId})}"
-                                   class="btn btn-danger">Delete</a>
+                                   onclick="return confirm('Are you sure you want to delete this credential?');" class="btn btn-danger">Delete</a>
                             </td>
                             <th th:text="${credential.url}" scope="row" ><span > Example Credential URL</span></th>
                             <td th:text="${credential.userName}"><span > Username</span></td>

@@ -8,14 +8,11 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
-
-import java.io.File;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class SeleniumTest {
@@ -62,7 +59,7 @@ public class SeleniumTest {
         HomePage homePage = new HomePage(driver);
 
         WebDriverWait wait = new WebDriverWait(driver, 100);
-//whatever time you think is sufficient for manually entering the data.
+        //whatever time you think is sufficient for manually entering the data.
         WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.id("logout-button")));
         element.isDisplayed();
 
