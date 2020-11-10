@@ -1,5 +1,6 @@
 package com.udacity.jwdnd.course1.cloudstorage.services;
 
+import com.udacity.jwdnd.course1.cloudstorage.controller.HomeController;
 import com.udacity.jwdnd.course1.cloudstorage.mapper.NoteMapper;
 import com.udacity.jwdnd.course1.cloudstorage.model.Note;
 import org.springframework.stereotype.Service;
@@ -25,10 +26,12 @@ public class NoteService {
     }
 
     public void addNote(Note note){
-        Note isNoteExist = noteMapper.findById(note.getNoteId());
-        if(isNoteExist==null){
+
+        if(note.getNoteId()==null){
+            HomeController.status = "added";
             noteMapper.addNote(note);
         }else {
+            HomeController.status = "updated";
             noteMapper.update(note);
         }
     }
@@ -36,10 +39,6 @@ public class NoteService {
 
     public Note findById(Integer noteId){
         return noteMapper.findById(noteId);
-    }
-
-    public void update(Note note){
-        noteMapper.update(note);
     }
 
     public int delete(Integer noteId){

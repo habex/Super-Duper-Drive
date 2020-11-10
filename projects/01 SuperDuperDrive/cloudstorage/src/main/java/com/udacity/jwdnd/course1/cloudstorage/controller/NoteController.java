@@ -32,6 +32,7 @@ public class NoteController {
     public String postNote( @ModelAttribute("notes") Note note, Model model) {
 
         this.noteService.addNote(note);
+        model.addAttribute("message", "Note " + HomeController.status +" successfully !");
 
         model.addAttribute("activeTab", "notes");
         model.addAttribute("credentials",this.credentialService.findAll());

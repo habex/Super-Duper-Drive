@@ -20,6 +20,7 @@ public class CredentialService {
     @Autowired
     private EncryptionService encryptionService;
 
+
     public CredentialService(CredentialMapper credentialMapper, UserMapper userMapper, AuthenticationService authenticationService, UserService userService) {
         this.credentialMapper = credentialMapper;
         this.userMapper = userMapper;
@@ -52,10 +53,6 @@ public class CredentialService {
 
     public Credential findNoteById(Integer credentialId){
         return credentialMapper.findById(credentialId);
-    }
-
-    public void update(Credential credential) {
-        credentialMapper.update(credential);
     }
 
     public int delete(Integer credentialId){
