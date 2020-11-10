@@ -10,7 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/credential")
-public class CredentialController  {
+public class CredentialController {
 
     private NoteService noteService;
     private UserService userService;
@@ -32,17 +32,12 @@ public class CredentialController  {
     @PostMapping
     public String postCredential(@ModelAttribute("credentials") Credential credential, Model model) {
 
-        if(credential.getCredentialId() == null){
-            this.credentialService.addCredential(credential);
-            model.addAttribute("message", "Credential added successfully !");
-        }else {
-            this.credentialService.update(credential);
-            model.addAttribute("message", "Credential updated successfully !");
-        }
+        this.credentialService.addCredential(credential);
+        model.addAttribute("message", "Credential " + HomeController.status +" successfully !");
 
         model.addAttribute("activeTab", "credentials");
-        model.addAttribute("credentials",this.credentialService.findAll());
-        model.addAttribute("files",this.fileService.findAll());
+        model.addAttribute("credentials", this.credentialService.findAll());
+        model.addAttribute("files", this.fileService.findAll());
         model.addAttribute("notes", this.noteService.findAll());
         return "home";
     }
@@ -57,8 +52,8 @@ public class CredentialController  {
             model.addAttribute("message", "Unsuccessfully to delete the Credential !");
         }
         model.addAttribute("activeTab", "credentials");
-        model.addAttribute("credentials",this.credentialService.findAll());
-        model.addAttribute("files",this.fileService.findAll());
+        model.addAttribute("credentials", this.credentialService.findAll());
+        model.addAttribute("files", this.fileService.findAll());
         model.addAttribute("notes", this.noteService.findAll());
         return "home";
     }

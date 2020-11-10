@@ -25,7 +25,12 @@ public class NoteService {
     }
 
     public void addNote(Note note){
-        noteMapper.addNote(note);
+        Note isNoteExist = noteMapper.findById(note.getNoteId());
+        if(isNoteExist==null){
+            noteMapper.addNote(note);
+        }else {
+            noteMapper.update(note);
+        }
     }
 
 

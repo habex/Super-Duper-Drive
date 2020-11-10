@@ -21,8 +21,10 @@ public class HomeController {
     private NoteService noteService;
     private CredentialService credentialService;
     private FileService fileService;
+    public static String status;
 
     public HomeController(NoteService noteService, CredentialService credentialService, FileService fileService) {
+        status="added";
         this.noteService = noteService;
         this.credentialService = credentialService;
         this.fileService = fileService;

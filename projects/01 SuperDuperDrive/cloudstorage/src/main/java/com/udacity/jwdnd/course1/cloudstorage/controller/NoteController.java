@@ -2,41 +2,36 @@ package com.udacity.jwdnd.course1.cloudstorage.controller;
 
 import com.udacity.jwdnd.course1.cloudstorage.model.Note;
 import com.udacity.jwdnd.course1.cloudstorage.services.*;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/note")
 public class NoteController {
 
-    private NoteService noteService;
+
     private UserService userService;
     private AuthenticationService authenticationService;
+    private EncryptionService encryptionService;
+    private NoteService noteService;
     private CredentialService credentialService;
     private FileService fileService;
-    private HashService hashService;
 
-    public NoteController(NoteService noteService, UserService userService, AuthenticationService authenticationService, CredentialService credentialService, FileService fileService, HashService hashService) {
+    public NoteController(NoteService noteService, UserService userService, AuthenticationService authenticationService, CredentialService credentialService, FileService fileService, HashService hashService, EncryptionService encryptionService) {
         this.noteService = noteService;
         this.userService = userService;
         this.authenticationService = authenticationService;
         this.credentialService = credentialService;
         this.fileService = fileService;
-        this.hashService = hashService;
+        this.encryptionService = encryptionService;
     }
 
     @PostMapping
-    public String postNote(@ModelAttribute("notes") Note note, Model model) {
+    public String postNote( @ModelAttribute("notes") Note note, Model model) {
 
-        if (note.getNoteId() == null) {
-            this.noteService.addNote(note);
-            model.addAttribute("message", "Note added successfully !");
-        } else {
-            this.noteService.update(note);
-            model.addAttribute("message", "Note updated successfully !");
-        }
+        this.noteService.addNote(note);
 
         model.addAttribute("activeTab", "notes");
         model.addAttribute("credentials",this.credentialService.findAll());
@@ -46,7 +41,7 @@ public class NoteController {
     }
 
     @GetMapping("/delete/{noteId}")
-    public String deleteNote(@PathVariable Integer noteId, Model model) {
+    public String deleteNote(@PathVariable Integer noteId,AuthenticationService authenticationService, Model model) {
         int result = noteService.delete(noteId);
 
         if (result >= 1) {
