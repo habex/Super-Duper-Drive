@@ -40,6 +40,7 @@ public class FileController {
     @GetMapping("/files")
     public String getFiles(Model model) {
 
+        model.addAttribute("activeTab", "files");
         model.addAttribute("credentials", this.credentialService.findAll());
         model.addAttribute("files", this.fileService.findAll());
         model.addAttribute("notes", this.noteService.findAll());

@@ -22,7 +22,7 @@
     <div id="contentDiv" style="clear: right;">
         <nav style="clear: right;">
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                <a class="nav-item nav-link "
+                <a class="nav-item nav-link " th:classappend="${#strings.equals(activeTab, 'files') ? 'active' : ''}"
                    id="nav-files-tab" data-toggle="tab" href="#nav-files" role="tab"
                    aria-controls="nav-files" aria-selected="true">Files</a>
                 <a class="nav-item nav-link" th:classappend="${#strings.equals(activeTab, 'notes') ? 'active' : ''}"
