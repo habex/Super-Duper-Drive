@@ -1,8 +1,7 @@
 package com.udacity.jwdnd.course1.cloudstorage.controller;
 
-
 import com.udacity.jwdnd.course1.cloudstorage.model.Note;
-import com.udacity.jwdnd.course1.cloudstorage.services.NoteService;
+import com.udacity.jwdnd.course1.cloudstorage.services.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -13,23 +12,35 @@ import org.springframework.web.servlet.ModelAndView;
 public class NoteController {
 
     private NoteService noteService;
+    private UserService userService;
+    private AuthenticationService authenticationService;
+    private CredentialService credentialService;
+    private FileService fileService;
+    private HashService hashService;
 
-    public NoteController(NoteService noteService) {
+    public NoteController(NoteService noteService, UserService userService, AuthenticationService authenticationService, CredentialService credentialService, FileService fileService, HashService hashService) {
         this.noteService = noteService;
+        this.userService = userService;
+        this.authenticationService = authenticationService;
+        this.credentialService = credentialService;
+        this.fileService = fileService;
+        this.hashService = hashService;
     }
 
-
     @PostMapping
-    public String postNote(Note note, Model model) {
+    public String postNote(@ModelAttribute("notes") Note note, Model model) {
 
-        if(note.getNoteId() == null){
+        if (note.getNoteId() == null) {
             this.noteService.addNote(note);
             model.addAttribute("message", "Note added successfully !");
-        }else {
+        } else {
             this.noteService.update(note);
             model.addAttribute("message", "Note updated successfully !");
         }
 
+        model.addAttribute("activeTab", "notes");
+        model.addAttribute("credentials",this.credentialService.findAll());
+        model.addAttribute("files",this.fileService.findAll());
         model.addAttribute("notes", this.noteService.findAll());
         return "home";
     }
@@ -43,13 +54,13 @@ public class NoteController {
         } else {
             model.addAttribute("message", "Unsuccessfully to delete the Note !");
         }
+        model.addAttribute("activeTab", "notes");
+        model.addAttribute("credentials",this.credentialService.findAll());
+        model.addAttribute("files",this.fileService.findAll());
         model.addAttribute("notes", this.noteService.findAll());
         return "home";
     }
 
-    @ModelAttribute
-    public void addAttributes(Model model) {
-        model.addAttribute("message", "HOME PAGE!");
-    }
+
 }
 

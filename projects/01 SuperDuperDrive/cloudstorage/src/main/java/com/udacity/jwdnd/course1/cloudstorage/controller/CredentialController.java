@@ -2,11 +2,9 @@ package com.udacity.jwdnd.course1.cloudstorage.controller;
 
 
 import com.udacity.jwdnd.course1.cloudstorage.model.Credential;
-import com.udacity.jwdnd.course1.cloudstorage.model.Note;
-import com.udacity.jwdnd.course1.cloudstorage.services.CredentialService;
+import com.udacity.jwdnd.course1.cloudstorage.services.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -14,15 +12,25 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/credential")
 public class CredentialController  {
 
+    private NoteService noteService;
+    private UserService userService;
+    private AuthenticationService authenticationService;
     private CredentialService credentialService;
+    private FileService fileService;
+    private HashService hashService;
 
-    public CredentialController(CredentialService credentialService) {
+
+    public CredentialController(NoteService noteService, UserService userService, AuthenticationService authenticationService, CredentialService credentialService, FileService fileService, HashService hashService) {
+        this.noteService = noteService;
+        this.userService = userService;
+        this.authenticationService = authenticationService;
         this.credentialService = credentialService;
-
+        this.fileService = fileService;
+        this.hashService = hashService;
     }
 
     @PostMapping
-    public String postCredential(Credential credential, Model model) {
+    public String postCredential(@ModelAttribute("credentials") Credential credential, Model model) {
 
         if(credential.getCredentialId() == null){
             this.credentialService.addCredential(credential);
@@ -32,8 +40,10 @@ public class CredentialController  {
             model.addAttribute("message", "Credential updated successfully !");
         }
 
-
-        model.addAttribute("credentials", this.credentialService.findAll());
+        model.addAttribute("activeTab", "credentials");
+        model.addAttribute("credentials",this.credentialService.findAll());
+        model.addAttribute("files",this.fileService.findAll());
+        model.addAttribute("notes", this.noteService.findAll());
         return "home";
     }
 
@@ -46,12 +56,11 @@ public class CredentialController  {
         } else {
             model.addAttribute("message", "Unsuccessfully to delete the Credential !");
         }
-        model.addAttribute("credentials", this.credentialService.findAll());
+        model.addAttribute("activeTab", "credentials");
+        model.addAttribute("credentials",this.credentialService.findAll());
+        model.addAttribute("files",this.fileService.findAll());
+        model.addAttribute("notes", this.noteService.findAll());
         return "home";
     }
 
-    @ModelAttribute
-    public void addAttributes(Model model) {
-        model.addAttribute("message", "HOME PAGE!");
-    }
 }

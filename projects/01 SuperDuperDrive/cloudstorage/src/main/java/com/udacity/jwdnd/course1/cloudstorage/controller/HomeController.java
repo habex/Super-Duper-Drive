@@ -5,6 +5,7 @@ import com.udacity.jwdnd.course1.cloudstorage.mapper.CredentialMapper;
 import com.udacity.jwdnd.course1.cloudstorage.mapper.NoteMapper;
 import com.udacity.jwdnd.course1.cloudstorage.model.Credential;
 import com.udacity.jwdnd.course1.cloudstorage.model.Note;
+import com.udacity.jwdnd.course1.cloudstorage.services.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -16,19 +17,33 @@ import java.util.Arrays;
 @RequestMapping(value = "/home")
 public class HomeController {
 
-    @GetMapping
-    public ModelAndView getHomePage() {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("home");
-        return  modelAndView;
+    private NoteService noteService;
+    private CredentialService credentialService;
+    private FileService fileService;
+
+    public HomeController(NoteService noteService, CredentialService credentialService, FileService fileService) {
+        this.noteService = noteService;
+        this.credentialService = credentialService;
+        this.fileService = fileService;
     }
 
-    @GetMapping("{tab}")
-    public String tab(@PathVariable String tab) {
-        if (Arrays.asList("tab1", "tab2", "tab3")
-                .contains(tab)) {
-            return "_" + tab;
-        }
-        return "empty";
+    @GetMapping
+    public String getHomePage(Model model) {
+
+        model.addAttribute("credentials",this.credentialService.findAll());
+        model.addAttribute("files",this.fileService.findAll());
+        model.addAttribute("notes", this.noteService.findAll());
+
+        model.addAttribute("activeTab", "files");
+        model.addAttribute("message", "HOME PAGE!");
+        return  "home";
+    }
+
+
+
+    @ModelAttribute
+    public void addAttributes(Model model) {
+        model.addAttribute("activeTab", "notes");
+        model.addAttribute("message", "HOME PAGE!");
     }
 }

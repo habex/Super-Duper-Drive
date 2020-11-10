@@ -1,7 +1,4 @@
 package com.udacity.jwdnd.course1.cloudstorage.model;
-import org.apache.ibatis.type.JdbcType;
-
-import java.sql.Blob;
 
 
 public class File {

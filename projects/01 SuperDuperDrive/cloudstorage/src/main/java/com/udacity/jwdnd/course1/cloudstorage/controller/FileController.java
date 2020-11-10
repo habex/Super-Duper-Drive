@@ -1,10 +1,7 @@
 package com.udacity.jwdnd.course1.cloudstorage.controller;
 
 import com.udacity.jwdnd.course1.cloudstorage.model.File;
-import com.udacity.jwdnd.course1.cloudstorage.model.File1;
-import com.udacity.jwdnd.course1.cloudstorage.services.FileService;
-import org.apache.ibatis.annotations.Param;
-import org.apache.tomcat.util.http.fileupload.IOUtils;
+import com.udacity.jwdnd.course1.cloudstorage.services.*;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -14,69 +11,45 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletResponse;
-import javax.sql.rowset.serial.SerialBlob;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.OutputStream;
-import java.sql.Blob;
 import java.sql.SQLException;
 
 @Controller
-@RequestMapping("/file")
+//@RequestMapping("/files")
 public class FileController {
 
+    private NoteService noteService;
+    private UserService userService;
+    private AuthenticationService authenticationService;
+    private CredentialService credentialService;
     private FileService fileService;
+    private HashService hashService;
 
-    public FileController(FileService fileService) {
+    public FileController(NoteService noteService, UserService userService, AuthenticationService authenticationService, CredentialService credentialService, FileService fileService, HashService hashService) {
+        this.noteService = noteService;
+        this.userService = userService;
+        this.authenticationService = authenticationService;
+        this.credentialService = credentialService;
         this.fileService = fileService;
+        this.hashService = hashService;
     }
 
-   /* //@RequestMapping(path = "/{fileId}")
-    public File getFile(@PathVariable Integer fileId, HttpServletResponse response) {
+    @GetMapping("/files")
+    public String getFiles(Model model) {
 
-        File file = fileService.getFile(fileId);
+        model.addAttribute("credentials", this.credentialService.findAll());
+        model.addAttribute("files", this.fileService.findAll());
+        model.addAttribute("notes", this.noteService.findAll());
 
-        System.out.println(fileId + "  " + file.getFileName());
-        try {
-            response.setHeader("Content-Disposition", "inline;filename=\"" + file.getFileName() + "\"");
-            OutputStream out = response.getOutputStream();
-            response.setContentType(file.getContentType());
-            //IOUtils.copy(file.getFileData().getBinaryStream(), out);
-            out.flush();
-            out.close();
+        return "home";
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return null;
-    }*/
-
-
-    @RequestMapping(path = "/{fileId}")
-    public ResponseEntity<Resource> serveFile(@PathVariable Integer fileId) throws SQLException {
-
-        File file = fileService.getFile(fileId);
-
-        System.out.println(file.getFileName() + " ==  " +file.getFileData().length);
-
-        byte[] bytes = file.getFileData();
-        InputStreamResource resource = new InputStreamResource(new ByteArrayInputStream(bytes));
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("Content-Disposition", String.format("attachment; filename=" + file.getFileName()));
-        return ResponseEntity.ok()
-                .headers(headers)
-                .contentLength(bytes.length)
-                .contentType(MediaType.valueOf("application/octet-stream"))
-                .body(resource);
     }
 
-
-    @PostMapping
-    public String upload(MultipartFile file, Model model) {
-
+    @PostMapping("/files")
+    public String upload(MultipartFile file, @ModelAttribute("files") File file1, Model model) {
         try {
             if (file.isEmpty()) {
                 model.addAttribute("message",
@@ -91,21 +64,54 @@ public class FileController {
             }
 
             // Converting MultipartFile this projects File
-            File file1 = new File();
+
             file1.setFileName(file.getOriginalFilename());
             file1.setContentType(file.getContentType());
             file1.setFileSize(file.getSize());
             file1.setFileData(file.getBytes());
             this.fileService.upLoad(file1);
-            model.addAttribute("files", this.fileService.findAll());
+
+
             model.addAttribute("message", "You successfully uploaded " + file1.getFileName() + " !");
         } catch (IOException e) {
         }
+
+        model.addAttribute("activeTab", "files");
+        model.addAttribute("credentials", this.credentialService.findAll());
         model.addAttribute("files", this.fileService.findAll());
+        model.addAttribute("notes", this.noteService.findAll());
+
         return "home";
     }
 
-    @GetMapping("/delete/{fileId}")
+
+    @RequestMapping(path = "/files/view/{fileId}")
+    public ResponseEntity serveFile(@PathVariable("fileId") Integer fileId, Model model) throws SQLException {
+
+        model.addAttribute("activeTab", "files");
+        model.addAttribute("credentials", this.credentialService.findAll());
+        model.addAttribute("files", this.fileService.findAll());
+        model.addAttribute("notes", this.noteService.findAll());
+
+        File file = fileService.getFile(fileId);
+//        byte[] bytes = file.getFileData();
+//        InputStreamResource resource = new InputStreamResource(new ByteArrayInputStream(bytes));
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.set("Content-Disposition", String.format("attachment; filename=" + file.getFileName()));
+
+        return ResponseEntity.ok().contentType(MediaType.parseMediaType(file.getContentType()))
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFileName() + "\"")
+                .body(file.getFileData());
+
+        /*return ResponseEntity.ok()
+                .headers(headers)
+                .contentLength(bytes.length)
+                .contentType(MediaType.valueOf("application/octet-stream"))
+                .body(resource);*/
+    }
+
+
+    @GetMapping("/files/delete/{fileId}")
     public String deleteFile(@PathVariable Integer fileId, Model model) {
         int result = fileService.delete(fileId);
 
@@ -114,13 +120,13 @@ public class FileController {
         } else {
             model.addAttribute("message", "Unsuccessfully to delete the File !");
         }
+
+        model.addAttribute("activeTab", "files");
+        model.addAttribute("credentials", this.credentialService.findAll());
         model.addAttribute("files", this.fileService.findAll());
+        model.addAttribute("notes", this.noteService.findAll());
         return "home";
     }
 
 
-    public Blob blobUtil(MultipartFile file) throws IOException, SQLException {
-        Blob blob = new SerialBlob(file.getBytes());
-        return blob;
-    }
 }
