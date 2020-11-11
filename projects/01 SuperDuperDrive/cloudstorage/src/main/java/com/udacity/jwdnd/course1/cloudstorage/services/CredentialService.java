@@ -42,7 +42,6 @@ public class CredentialService {
         {
             HomeController.status = "updated";
             credentialMapper.update(credential);
-
         }
 
     }

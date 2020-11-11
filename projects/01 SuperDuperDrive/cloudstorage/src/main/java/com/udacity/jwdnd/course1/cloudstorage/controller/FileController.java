@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 @Controller
-//@RequestMapping("/files")
+@RequestMapping("/files")
 public class FileController {
 
     private NoteService noteService;
@@ -49,7 +49,7 @@ public class FileController {
 
     }
 
-    @PostMapping("/files")
+    @PostMapping
     public String upload(MultipartFile file, @ModelAttribute("files") File file1, Model model) {
         try {
             if (file.isEmpty()) {
@@ -86,7 +86,7 @@ public class FileController {
     }
 
 
-    @RequestMapping(path = "/files/view/{fileId}")
+    @RequestMapping(path = "/view/{fileId}")
     public ResponseEntity serveFile(@PathVariable("fileId") Integer fileId, Model model) throws SQLException {
 
         model.addAttribute("activeTab", "files");
@@ -112,7 +112,7 @@ public class FileController {
     }
 
 
-    @GetMapping("/files/delete/{fileId}")
+    @GetMapping("/delete/{fileId}")
     public String deleteFile(@PathVariable Integer fileId, Model model) {
         int result = fileService.delete(fileId);
 
@@ -126,7 +126,7 @@ public class FileController {
         model.addAttribute("credentials", this.credentialService.findAll());
         model.addAttribute("files", this.fileService.findAll());
         model.addAttribute("notes", this.noteService.findAll());
-        return "home";
+        return "redirect:/home";
     }
 
 

@@ -2,10 +2,10 @@ package com.udacity.jwdnd.course1.cloudstorage.controller;
 
 import com.udacity.jwdnd.course1.cloudstorage.model.Note;
 import com.udacity.jwdnd.course1.cloudstorage.services.*;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/note")
@@ -40,6 +40,7 @@ public class NoteController {
         model.addAttribute("notes", this.noteService.findAll());
         return "home";
     }
+
 
     @GetMapping("/delete/{noteId}")
     public String deleteNote(@PathVariable Integer noteId,AuthenticationService authenticationService, Model model) {
