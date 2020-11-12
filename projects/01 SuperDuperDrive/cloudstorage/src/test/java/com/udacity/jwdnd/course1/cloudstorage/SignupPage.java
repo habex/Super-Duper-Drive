@@ -26,7 +26,7 @@ public class SignupPage {
         PageFactory.initElements(driver,this);
     }
 
-    public void signup(String firstName, String lastName, String username, String password) throws InterruptedException {
+    public void signup(String firstName, String lastName, String username, String password) {
         this.inputFirstName.sendKeys(firstName);
         this.inputLastName.sendKeys(lastName);
         this.inputUsername.sendKeys(username);
