@@ -29,12 +29,7 @@ public class CloudStorageTest {
 
     @AfterAll
     public static void afterAll() {
-        //WebDriverWait wait = new WebDriverWait(driver, 1000);
-        //whatever time you think is sufficient for manually entering the data.
-       // WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.id("logout-button")));
-       // element.isDisplayed();
-
-        driver.quit();
+                driver.quit();
         driver = null;
     }
 
