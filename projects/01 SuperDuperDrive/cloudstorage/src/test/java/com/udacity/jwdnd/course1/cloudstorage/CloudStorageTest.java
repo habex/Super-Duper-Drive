@@ -29,10 +29,10 @@ public class CloudStorageTest {
 
     @AfterAll
     public static void afterAll() {
-        WebDriverWait wait = new WebDriverWait(driver, 1000);
+        //WebDriverWait wait = new WebDriverWait(driver, 1000);
         //whatever time you think is sufficient for manually entering the data.
-        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.id("logout-button")));
-        element.isDisplayed();
+       // WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.id("logout-button")));
+       // element.isDisplayed();
 
         driver.quit();
         driver = null;
@@ -69,95 +69,119 @@ public class CloudStorageTest {
 
         HomePage homePage = new HomePage(driver);
 
-
     }
 
     @Test
     @Order(3)
     public void notePost() throws InterruptedException {
 
-        noteAdd();
-        noteEdit();
-        noteDelete();
+        noteTests();
+        Thread.sleep(1000);
+        credentialTest();
 
     }
 
-    private void noteAdd() throws InterruptedException {
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-
-        Thread.sleep(500);
-
+    private void noteTests() throws InterruptedException {
         NotesTabPage notesTabPage = new NotesTabPage(driver);
-
-        Thread.sleep(500);
-
-        WebElement noteTab = driver.findElement(By.id("nav-notes-tab"));
-        noteTab.click();
-
-        wait.until(ExpectedConditions.visibilityOf(noteTab)).click();
-
-        WebElement addNoteButton = driver.findElement(By.id("add-note"));
-        addNoteButton.click();
-
-        notesTabPage.postNote(driver, "First Title", "First Description");
-
-        Thread.sleep(500);
-
-        WebElement noteSubmit = driver.findElement(By.id("note-save"));
-        noteSubmit.click();
-
-        Thread.sleep(500);
-        addNoteButton = driver.findElement(By.id("add-note"));
-        addNoteButton.click();
-
-        notesTabPage.postNote(driver, "Second Title", "Second Description");
-
-        Thread.sleep(500);
-
-        noteSubmit = driver.findElement(By.id("note-save"));
-        noteSubmit.click();
-
-        Thread.sleep(500);
+        noteAdd(notesTabPage);
+        noteEdit(notesTabPage);
+        noteDelete(notesTabPage);
     }
 
-    private void noteEdit() throws InterruptedException {
+    public void credentialTest() throws InterruptedException {
 
-        WebDriverWait wait = new WebDriverWait(driver, 10);
+        CredentialsTabPage credentialsTabPage = new CredentialsTabPage(driver);
 
+        credentialAdd(credentialsTabPage);
+        credentialEdit(credentialsTabPage);
+        credentialDelete(credentialsTabPage);
+
+    }
+
+    private void noteAdd(NotesTabPage notesTabPage) throws InterruptedException {
+        WebDriverWait wait = new WebDriverWait(driver, 100);
         Thread.sleep(500);
 
-        NotesTabPage notesTabPage = new NotesTabPage(driver);
+        notesTabPage.noteTab.click();
 
-        Thread.sleep(500);
+        notesTabPage.addNoteButton.click();
 
-        WebElement noteTab = driver.findElement(By.id("nav-notes-tab"));
-        noteTab.click();
+        notesTabPage.postNote("First Title", "First Description");
 
-        wait.until(ExpectedConditions.visibilityOf(noteTab)).click();
+        notesTabPage.noteSubmit.click();
 
-        Thread.sleep(500);
+        notesTabPage.addNoteButton.click();
 
-        WebElement noteEdit = driver.findElement(By.id("note-edit"));
-        noteEdit.click();
+        notesTabPage.postNote("Second Title", "Second Description");
 
-        notesTabPage.postNote(driver, "First Title After Edit", "First Description After Edit");
+        notesTabPage.noteSubmit.click();
+    }
+
+    private void noteEdit(NotesTabPage notesTabPage) throws InterruptedException {
 
         Thread.sleep(1000);
-        WebElement noteSubmit = driver.findElement(By.id("note-save"));
-        noteSubmit.click();
-
-
-
-    }
-
-
-    private void noteDelete() throws InterruptedException {
-
-
-        Thread.sleep(500);
-        WebElement noteDelete = driver.findElement(By.id("note-delete"));
-        noteDelete.click();
+        notesTabPage.noteTab.click();
 
         Thread.sleep(1000);
+        notesTabPage.noteEdit.click();
+
+        notesTabPage.postNote("First Title After Edit", "First Description After Edit");
+
+        Thread.sleep(1000);
+        notesTabPage.noteSubmit.click();
+
+
     }
+
+    private void noteDelete(NotesTabPage notesTabPage) throws InterruptedException {
+
+        Thread.sleep(500);
+        notesTabPage. noteDelete.click();
+        Thread.sleep(500);
+
+    }
+
+    private void credentialAdd(CredentialsTabPage credentialsTabPage) throws InterruptedException {
+
+        credentialsTabPage.navCredential.click();
+
+        credentialsTabPage.addCredential.click();
+
+        credentialsTabPage.credentialNote("https://www.youtube.com", "Saba", "gual tsegai");
+
+        credentialsTabPage.credentialSave.click();
+
+        credentialsTabPage.addCredential.click();
+
+        credentialsTabPage.credentialNote("https://www.google.com/", "Solomon", "father");
+
+        credentialsTabPage.credentialSave.click();
+
+        Thread.sleep(1000);
+
+    }
+
+
+    private void credentialEdit(CredentialsTabPage credentialsTabPage) throws InterruptedException {
+        credentialsTabPage.navCredential.click();
+
+        Thread.sleep(1000);
+        credentialsTabPage.credentialEdit.click();
+
+        credentialsTabPage.credentialNote("https://www.haben.com", "Saba", "mother");
+
+        Thread.sleep(1000);
+        credentialsTabPage.credentialSave.click();
+        Thread.sleep(1000);
+    }
+
+    private void credentialDelete(CredentialsTabPage credentialsTabPage) throws InterruptedException {
+
+        Thread.sleep(1000);
+        credentialsTabPage.credentialDelete.click();
+        Thread.sleep(1000);
+
+    }
+
+
 }
