@@ -99,8 +99,8 @@ public class CloudStorageTest {
     }
 
     private void noteAdd(NotesTabPage notesTabPage) throws InterruptedException {
-        WebDriverWait wait = new WebDriverWait(driver, 100);
-        Thread.sleep(500);
+
+        Thread.sleep(2000);
 
         notesTabPage.noteTab.click();
 
@@ -108,28 +108,28 @@ public class CloudStorageTest {
 
         notesTabPage.postNote("First Title", "* First Description 01 \n* First Description 02 \n* First Description 03 \n* First Description 04 \n* First Description 05 \n");
 
-        Thread.sleep(1000);
+        Thread.sleep(2000);
         notesTabPage.noteSubmit.click();
 
         notesTabPage.addNoteButton.click();
 
         notesTabPage.postNote("Second Title", "- Second Description 01 \n- Second Description 02 \n- Second Description 03 \n- Second Description 04 \n");
 
-        Thread.sleep(1000);
+        Thread.sleep(2000);
         notesTabPage.noteSubmit.click();
     }
 
     private void noteEdit(NotesTabPage notesTabPage) throws InterruptedException {
 
-        Thread.sleep(1000);
+        Thread.sleep(2000);
         notesTabPage.noteTab.click();
 
-        Thread.sleep(1000);
+        Thread.sleep(2000);
         notesTabPage.noteEdit.click();
 
         notesTabPage.postNote("First Title After Edit", "First Description After Edit");
 
-        Thread.sleep(1000);
+        Thread.sleep(2000);
         notesTabPage.noteSubmit.click();
 
 
@@ -137,9 +137,9 @@ public class CloudStorageTest {
 
     private void noteDelete(NotesTabPage notesTabPage) throws InterruptedException {
 
-        Thread.sleep(500);
-        notesTabPage. noteDelete.click();
-        Thread.sleep(1000);
+        Thread.sleep(2000);
+        notesTabPage.noteDelete.click();
+        Thread.sleep(2000);
 
     }
 
@@ -151,38 +151,35 @@ public class CloudStorageTest {
 
         credentialsTabPage.credentialNote("https://www.youtube.com", "User One", "abc123");
 
-        Thread.sleep(1000);
+        Thread.sleep(2000);
         credentialsTabPage.credentialSave.click();
 
         credentialsTabPage.addCredential.click();
 
         credentialsTabPage.credentialNote("https://www.google.com/", "User Two", "!@#ABC");
 
-        Thread.sleep(1000);
+        Thread.sleep(2000);
         credentialsTabPage.credentialSave.click();
-
-        Thread.sleep(1000);
 
     }
 
     private void credentialEdit(CredentialsTabPage credentialsTabPage) throws InterruptedException {
         credentialsTabPage.navCredential.click();
 
-        Thread.sleep(1000);
+        Thread.sleep(2000);
         credentialsTabPage.credentialEdit.click();
 
         credentialsTabPage.credentialNote("https://www.udacity.com", "Student", "987654321");
 
-        Thread.sleep(1000);
+        Thread.sleep(2000);
         credentialsTabPage.credentialSave.click();
-        Thread.sleep(1000);
     }
 
     private void credentialDelete(CredentialsTabPage credentialsTabPage) throws InterruptedException {
 
-        Thread.sleep(1000);
+        Thread.sleep(2000);
         credentialsTabPage.credentialDelete.click();
-        Thread.sleep(1000);
+        Thread.sleep(2000);
 
     }
 
