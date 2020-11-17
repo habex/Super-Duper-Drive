@@ -37,10 +37,6 @@ public class NoteService {
     }
 
 
-    public Note findById(Integer noteId){
-        return noteMapper.findById(noteId);
-    }
-
     public int delete(Integer noteId){
         return noteMapper.delete(noteId);
     }

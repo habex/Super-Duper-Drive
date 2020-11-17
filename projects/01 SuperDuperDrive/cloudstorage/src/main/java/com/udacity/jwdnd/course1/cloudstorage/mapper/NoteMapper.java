@@ -10,7 +10,7 @@ public interface NoteMapper {
     @Select("SELECT * FROM NOTES WHERE userId = #{userId}")
     List<Note> findAll(Integer userId);
 
-    @Select("SELECT * FROM NOTES WHERE noteid = #{noteId}")
+    @Select("SELECT * FROM NOTES WHERE noteId = #{noteId}")
     Note findById(int noteId);
 
     @Insert("INSERT INTO NOTES (notetitle, notedescription, userid) VALUES(#{noteTitle}, #{noteDescription}, #{userId})")

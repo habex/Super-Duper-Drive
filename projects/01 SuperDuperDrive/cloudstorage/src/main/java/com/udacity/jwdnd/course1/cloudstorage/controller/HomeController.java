@@ -33,21 +33,18 @@ public class HomeController {
 
         Integer userId = userService.getUserByName(authentication.getName()).getUserId();
 
+        addAttributes(model,userId,"files","HOME PAGE");
+        return  "home";
+    }
+
+    public void addAttributes(Model model, Integer userId, String activeTab,String message) {
+
         model.addAttribute("credentials",this.credentialService.findAll(userId));
         model.addAttribute("files",this.fileService.findAll(userId));
         model.addAttribute("notes", this.noteService.findAll(userId));
         model.addAttribute("encryptionService", encryptionService);
 
-        model.addAttribute("activeTab", "files");
-        model.addAttribute("message", "HOME PAGE");
-        return  "home";
-    }
-
-
-
-    @ModelAttribute
-    public void addAttributes(Model model) {
-        model.addAttribute("activeTab", "notes");
-        model.addAttribute("message", "HOME PAGE!");
+        model.addAttribute("activeTab", activeTab);
+        model.addAttribute("message", message);
     }
 }

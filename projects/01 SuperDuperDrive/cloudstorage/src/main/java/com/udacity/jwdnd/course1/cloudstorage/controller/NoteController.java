@@ -14,19 +14,14 @@ public class NoteController {
 
 
     private UserService userService;
-    private AuthenticationService authenticationService;
-    private EncryptionService encryptionService;
     private NoteService noteService;
-    private CredentialService credentialService;
-    private FileService fileService;
+    private HomeController homeController;
+    private String message = "Notes list";
 
-    public NoteController(NoteService noteService, UserService userService, AuthenticationService authenticationService, CredentialService credentialService, FileService fileService, HashService hashService, EncryptionService encryptionService) {
-        this.noteService = noteService;
+    public NoteController(UserService userService, NoteService noteService, HomeController homeController) {
         this.userService = userService;
-        this.authenticationService = authenticationService;
-        this.credentialService = credentialService;
-        this.fileService = fileService;
-        this.encryptionService = encryptionService;
+        this.noteService = noteService;
+        this.homeController = homeController;
     }
 
     @PostMapping
@@ -34,13 +29,12 @@ public class NoteController {
 
 
         Integer userId = userService.getUserByName(authentication.getName()).getUserId();
+        note.setUserId(userId);
         this.noteService.addNote(note);
-        model.addAttribute("message", "Note " + HomeController.status +" successfully !");
+        message="Note "  +" successfully "+ HomeController.status +" !";
 
-        model.addAttribute("activeTab", "notes");
-        model.addAttribute("credentials",this.credentialService.findAll(userId));
-        model.addAttribute("files",this.fileService.findAll(userId));
-        model.addAttribute("notes", this.noteService.findAll(userId));
+        homeController.addAttributes(model,userId,"notes",message);
+
         return "home";
     }
 
@@ -53,14 +47,13 @@ public class NoteController {
         int result = noteService.delete(noteId);
 
         if (result >= 1) {
-            model.addAttribute("message", "Note deleted successfully !");
+            message= "Note successfully deleted !";
         } else {
-            model.addAttribute("message", "Unsuccessfully to delete the Note !");
+            message="Deleting the Note was unsuccessfully !";
         }
-        model.addAttribute("activeTab", "notes");
-        model.addAttribute("credentials",this.credentialService.findAll(userId));
-        model.addAttribute("files",this.fileService.findAll(userId));
-        model.addAttribute("notes", this.noteService.findAll(userId));
+
+        homeController.addAttributes(model,userId,"notes",message);
+
         return "home";
     }
 

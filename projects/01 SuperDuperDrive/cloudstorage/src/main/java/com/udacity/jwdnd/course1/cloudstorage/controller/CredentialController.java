@@ -12,18 +12,15 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/credential")
 public class CredentialController {
 
-    private NoteService noteService;
     private CredentialService credentialService;
-    private FileService fileService;
-    private EncryptionService encryptionService;
     private UserService userService;
+    private HomeController homeController;
+    private String message = "Credentials list";
 
-    public CredentialController(NoteService noteService, CredentialService credentialService, FileService fileService, EncryptionService encryptionService, UserService userService) {
-        this.noteService = noteService;
+    public CredentialController(CredentialService credentialService, UserService userService, HomeController homeController) {
         this.credentialService = credentialService;
-        this.fileService = fileService;
-        this.encryptionService = encryptionService;
         this.userService = userService;
+        this.homeController = homeController;
     }
 
     @PostMapping
@@ -35,13 +32,8 @@ public class CredentialController {
             credential.setUserId(userId);
         }
         this.credentialService.addCredential(credential);
-        model.addAttribute("message", "Credential " + HomeController.status +" successfully !");
-
-        model.addAttribute("activeTab", "credentials");
-        model.addAttribute("credentials", this.credentialService.findAll(userId));
-        model.addAttribute("files", this.fileService.findAll(userId));
-        model.addAttribute("notes", this.noteService.findAll(userId));
-        model.addAttribute("encryptionService", encryptionService);
+        message = "Credential"+" successfully "+ HomeController.status +" !";
+        homeController.addAttributes(model,userId,"credentials",message);
 
         return "home";
     }
@@ -59,14 +51,12 @@ public class CredentialController {
         int result = credentialService.delete(credentialId);
 
         if (result >= 1) {
-            model.addAttribute("message", "Credential deleted successfully !");
+            message="Credential successfully deleted!";
         } else {
-            model.addAttribute("message", "Unsuccessfully to delete the Credential !");
+            message="Deleting the Credential was unsuccessfully!";
         }
-        model.addAttribute("activeTab", "credentials");
-        model.addAttribute("credentials", this.credentialService.findAll(userId));
-        model.addAttribute("files", this.fileService.findAll(userId));
-        model.addAttribute("notes", this.noteService.findAll(userId));
+        homeController.addAttributes(model,userId,"credentials",message);
+
         return "home";
     }
 
