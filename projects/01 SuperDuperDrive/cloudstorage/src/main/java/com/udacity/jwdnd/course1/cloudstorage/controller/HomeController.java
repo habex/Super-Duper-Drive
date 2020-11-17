@@ -1,17 +1,11 @@
 package com.udacity.jwdnd.course1.cloudstorage.controller;
 
 
-import com.udacity.jwdnd.course1.cloudstorage.mapper.CredentialMapper;
-import com.udacity.jwdnd.course1.cloudstorage.mapper.NoteMapper;
-import com.udacity.jwdnd.course1.cloudstorage.model.Credential;
-import com.udacity.jwdnd.course1.cloudstorage.model.Note;
 import com.udacity.jwdnd.course1.cloudstorage.services.*;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
-
-import java.util.Arrays;
 
 @Controller
 @RequestMapping(value = "/home")
@@ -22,8 +16,12 @@ public class HomeController {
     private CredentialService credentialService;
     private FileService fileService;
     public static String status;
+    private EncryptionService encryptionService;
+    private UserService userService;
 
-    public HomeController(NoteService noteService, CredentialService credentialService, FileService fileService) {
+    public HomeController(NoteService noteService, CredentialService credentialService, FileService fileService, EncryptionService encryptionService, UserService userService) {
+        this.encryptionService = encryptionService;
+        this.userService = userService;
         status="added";
         this.noteService = noteService;
         this.credentialService = credentialService;
@@ -31,14 +29,17 @@ public class HomeController {
     }
 
     @GetMapping
-    public String getHomePage(Model model) {
+    public String getHomePage(Model model, Authentication authentication) {
 
-        model.addAttribute("credentials",this.credentialService.findAll());
-        model.addAttribute("files",this.fileService.findAll());
-        model.addAttribute("notes", this.noteService.findAll());
+        Integer userId = userService.getUserByName(authentication.getName()).getUserId();
+
+        model.addAttribute("credentials",this.credentialService.findAll(userId));
+        model.addAttribute("files",this.fileService.findAll(userId));
+        model.addAttribute("notes", this.noteService.findAll(userId));
+        model.addAttribute("encryptionService", encryptionService);
 
         model.addAttribute("activeTab", "files");
-        model.addAttribute("message", "HOME PAGE!");
+        model.addAttribute("message", "HOME PAGE");
         return  "home";
     }
 

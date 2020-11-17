@@ -29,7 +29,7 @@ public class CloudStorageTest {
 
     @AfterAll
     public static void afterAll() {
-                driver.quit();
+        driver.quit();
         driver = null;
     }
 
@@ -53,7 +53,10 @@ public class CloudStorageTest {
 
     @Test
     @Order(2)
-    public void login() {
+    public void login() throws InterruptedException {
+
+        Thread.sleep(1000);
+
         String username = "haben";
         String password = "fisseha";
 
@@ -68,16 +71,18 @@ public class CloudStorageTest {
 
     @Test
     @Order(3)
-    public void notePost() throws InterruptedException {
+    public void tests() throws InterruptedException {
 
         noteTests();
-        Thread.sleep(1000);
+        Thread.sleep(2000);
         credentialTest();
 
     }
 
     private void noteTests() throws InterruptedException {
+
         NotesTabPage notesTabPage = new NotesTabPage(driver);
+
         noteAdd(notesTabPage);
         noteEdit(notesTabPage);
         noteDelete(notesTabPage);
@@ -101,14 +106,16 @@ public class CloudStorageTest {
 
         notesTabPage.addNoteButton.click();
 
-        notesTabPage.postNote("First Title", "First Description");
+        notesTabPage.postNote("First Title", "* First Description 01 \n* First Description 02 \n* First Description 03 \n* First Description 04 \n* First Description 05 \n");
 
+        Thread.sleep(1000);
         notesTabPage.noteSubmit.click();
 
         notesTabPage.addNoteButton.click();
 
-        notesTabPage.postNote("Second Title", "Second Description");
+        notesTabPage.postNote("Second Title", "- Second Description 01 \n- Second Description 02 \n- Second Description 03 \n- Second Description 04 \n");
 
+        Thread.sleep(1000);
         notesTabPage.noteSubmit.click();
     }
 
@@ -132,7 +139,7 @@ public class CloudStorageTest {
 
         Thread.sleep(500);
         notesTabPage. noteDelete.click();
-        Thread.sleep(500);
+        Thread.sleep(1000);
 
     }
 
@@ -142,20 +149,21 @@ public class CloudStorageTest {
 
         credentialsTabPage.addCredential.click();
 
-        credentialsTabPage.credentialNote("https://www.youtube.com", "Saba", "gual tsegai");
+        credentialsTabPage.credentialNote("https://www.youtube.com", "User One", "abc123");
 
+        Thread.sleep(1000);
         credentialsTabPage.credentialSave.click();
 
         credentialsTabPage.addCredential.click();
 
-        credentialsTabPage.credentialNote("https://www.google.com/", "Solomon", "father");
+        credentialsTabPage.credentialNote("https://www.google.com/", "User Two", "!@#ABC");
 
+        Thread.sleep(1000);
         credentialsTabPage.credentialSave.click();
 
         Thread.sleep(1000);
 
     }
-
 
     private void credentialEdit(CredentialsTabPage credentialsTabPage) throws InterruptedException {
         credentialsTabPage.navCredential.click();
@@ -163,7 +171,7 @@ public class CloudStorageTest {
         Thread.sleep(1000);
         credentialsTabPage.credentialEdit.click();
 
-        credentialsTabPage.credentialNote("https://www.haben.com", "Saba", "mother");
+        credentialsTabPage.credentialNote("https://www.udacity.com", "Student", "987654321");
 
         Thread.sleep(1000);
         credentialsTabPage.credentialSave.click();

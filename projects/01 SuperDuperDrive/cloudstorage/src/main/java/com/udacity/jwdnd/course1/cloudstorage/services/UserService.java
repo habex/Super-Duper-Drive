@@ -18,8 +18,8 @@ public class UserService {
         this.hashService = hashService;
     }
 
-    public boolean isUsernameAvailable(String username){
-        return userMapper.getUser(username) == null;
+    public boolean isUsernameAvailable(String userName){
+        return userMapper.getUserByName(userName) == null;
     }
 
     public int createUser(User user){
@@ -32,8 +32,12 @@ public class UserService {
 
     }
 
-    public User getUser(String username){
-        return userMapper.getUser(username);
+    public User getUserById(Integer userid){
+        return userMapper.getUserById(userid);
+    }
+
+    public User getUserByName(String username){
+        return userMapper.getUserByName(username);
     }
 }
 

@@ -21,8 +21,8 @@ public class NoteService {
         System.out.println("Creating NoteService bean");
     }
 
-    public List<Note> findAll(){
-        return noteMapper.findAll();
+    public List<Note> findAll(Integer userId){
+        return noteMapper.findAll(userId);
     }
 
     public void addNote(Note note){

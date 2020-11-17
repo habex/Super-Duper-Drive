@@ -9,24 +9,24 @@ import java.util.List;
 @Mapper
 public interface CredentialMapper {
 
-    @Select("SELECT * FROM CREDENTIALS")
-    List<Credential> findAll();
+    @Select("SELECT * FROM CREDENTIALS WHERE userId =#{userId}")
+    List<Credential> findAll(int userId);
 
-    @Select("SELECT * FROM CREDENTIALS WHERE credentialid = #{credentialId}")
-    Credential findById(@Param("credentialId") int credentialId);
+    @Select("SELECT * FROM CREDENTIALS WHERE credentialId = #{credentialId}")
+    Credential findById(int credentialId);
 
-    @Insert("INSERT INTO CREDENTIALS (url, username, key, password, userid) VALUES " +
-            "(#{url}, #{userName}, #{key}, #{password}, #{userId})")
+    @Select("SELECT password FROM CREDENTIALS WHERE credentialid=#{credentialID")
+    String getDecryptedPassword(int credentialId);
+
+    @Insert("INSERT INTO CREDENTIALS (url, username,key, password,userid) VALUES " +
+            "(#{url}, #{username}, #{key}, #{password}, #{userId})")
     @Options(useGeneratedKeys = true, keyProperty = "credentialId")
     int addCredential(Credential credential);
 
-    @Update("UPDATE CREDENTIALS set url = #{url}, username = #{userName}, password = #{password} WHERE credentialid = #{credentialId}")
-    void update(Credential credential);
+    @Update("UPDATE CREDENTIALS set url = #{url}, username = #{username},key = #{key}, password = #{password}, userId = #{userId} WHERE credentialId = #{credentialId}")
+    int update(Credential credential);
 
 
-
-    @Delete("DELETE FROM CREDENTIALS WHERE credentialid = #{credentialId}")
-    int delete(@Param("credentialId") int credentialId);
-
-
+    @Delete("DELETE FROM CREDENTIALS WHERE credentialId = #{credentialId}")
+    int delete(int credentialId);
 }

@@ -62,4 +62,7 @@ public class EncryptionService {
         return null;
     }
 
+    public String test(){
+        return "test";
+    }
 }

@@ -35,7 +35,7 @@
         </nav>
         <div class="tab-content" id="nav-tabContent">
             <div class="tab-pane fade" th:classappend="${#strings.equals(activeTab, 'files') ? 'show active' : ''}" id="nav-files" role="tabpanel" aria-labelledby="nav-files-tab">
-                <form th:object="${home}" th:action="@{/files}" action="#" enctype="multipart/form-data" method="POST">
+                <form th:object="${files}" th:action="@{/files}" action="#" enctype="multipart/form-data" method="POST">
                     <div class="container">
                         <div class="row" style="margin: 1em;">
                             <div class="col-sm-2">
@@ -111,7 +111,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form th:object="${home}" th:action="@{/note}" method="POST" modelAttribute="home">
+                                <form th:object="${notes}" th:action="@{/note}" method="POST" modelAttribute="home">
                                     <input type="hidden" name="noteId" id="note-id" >
                                     <div class="form-group">
                                         <label for="note-title" class="col-form-label">Title</label>
@@ -156,11 +156,17 @@
                         <tbody>
                         <tr th:each="credential : ${credentials}">
                             <td>
-                                <button id="credential-edit"  type="button" class="btn btn-success" th:onclick="javascript: showCredentialModal([[${credential.credentialId}]],[[${credential.url}]], [[${credential.userName}]], [[${credential.password}]])">Edit</button>
+                                <button id="credential-edit"  type="button" class="btn btn-success"
+                                        th:credentialId="${credential.getCredentialId()}"
+                                        th:url="${credential.getUrl()}"
+                                        th:username="${credential.getUsername()}"
+                                        th:decryption="${encryptionService.decryptValue(credential.getPassword(),credential.getKey())}"
+                                        th:onclick="javascript:showCredentialModal(this.getAttribute('credentialId'),this.getAttribute('url'),this.getAttribute('username'),this.getAttribute('decryption'));">
+                                    Edit</button>
                                 <a id="credential-delete" th:href="@{/credential/delete/{credentialId}(credentialId=${credential.credentialId})}" class="btn btn-danger">Delete</a>
                             </td>
                             <th th:text="${credential.url}" scope="row" ><span > Example Credential URL</span></th>
-                            <td th:text="${credential.userName}"><span > Username</span></td>
+                            <td th:text="${credential.username}"><span > Username</span></td>
                             <td th:text="${credential.password}"><span > Example Credential Password</span></td>
                         </tr>
                         </tbody>
@@ -178,7 +184,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form th:object="${home}" th:action="@{/credential}" action="#" method="POST"
+                                <form th:object="${credentials}" th:action="@{/credential}" action="#" method="POST"
                                       modelAttribute="home">
                                     <input type="hidden" Example Credential Username name="credentialId"
                                            id="credential-id">
@@ -189,7 +195,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="credential-username" class="col-form-label">Username</label>
-                                        <input type="text" name="userName" class="form-control" id="credential-username"
+                                        <input type="text" name="username" class="form-control" id="credential-username"
                                                maxlength="30" required>
                                     </div>
                                     <div class="form-group">
@@ -219,7 +225,7 @@
 <script th:src="@{/js/popper.min.js}"></script>
 <script th:src="@{/js/bootstrap.min.js}"></script>
 
-<!--For opening the note modal-->
+<!--For opening the modals-->
 <script type="text/javascript">
             // For opening the note modal
             function showNoteModal(noteId, noteTitle, noteDescription) {
@@ -237,19 +243,6 @@
                 $('#credential-password').val(password ? password : '');
                 $('#credentialModal').modal('show');
             }
-
-            // For opening the note update modal
-            function updateCredentialModal(id) {
-                var rows = document.getElementById("credentialTable").rows[id];
-
-                $('#credential-id').val(id);
-                $('#credential-url').val(rows.cells[1].innerHTML);
-                $('#credential-username').val(rows.cells[2].innerHTML);
-                $('#credential-password').val(rows.cells[3].innerHTML);
-
-                $('#credentialModal').modal('show');
-            }
-
 
 </script>
 </body>

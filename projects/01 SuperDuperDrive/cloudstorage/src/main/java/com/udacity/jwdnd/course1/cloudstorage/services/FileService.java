@@ -22,8 +22,8 @@ public class FileService {
         System.out.println("Creating FileService bean");
     }
 
-    public List<File> findAll(){
-        return fileMapper.getAllFiles();
+    public List<File> findAll(Integer userId){
+        return fileMapper.getAllFiles(userId);
     }
 
     public File getFile(Integer fileId){

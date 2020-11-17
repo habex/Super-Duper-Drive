@@ -7,6 +7,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -38,19 +39,23 @@ public class FileController {
     }
 
     @GetMapping("/files")
-    public String getFiles(Model model) {
+    public String getFiles(Authentication authentication,Model model) {
+
+        Integer userId = userService.getUserByName(authentication.getName()).getUserId();
 
         model.addAttribute("activeTab", "files");
-        model.addAttribute("credentials", this.credentialService.findAll());
-        model.addAttribute("files", this.fileService.findAll());
-        model.addAttribute("notes", this.noteService.findAll());
+        model.addAttribute("credentials", this.credentialService.findAll(userId));
+        model.addAttribute("files", this.fileService.findAll(userId));
+        model.addAttribute("notes", this.noteService.findAll(userId));
 
         return "home";
 
     }
 
     @PostMapping
-    public String upload(MultipartFile file, @ModelAttribute("files") File file1, Model model) {
+    public String upload(Authentication authentication,MultipartFile file, @ModelAttribute("files") File file1, Model model) {
+
+        Integer userId = userService.getUserByName(authentication.getName()).getUserId();
         try {
             if (file.isEmpty()) {
                 model.addAttribute("message",
@@ -78,21 +83,24 @@ public class FileController {
         }
 
         model.addAttribute("activeTab", "files");
-        model.addAttribute("credentials", this.credentialService.findAll());
-        model.addAttribute("files", this.fileService.findAll());
-        model.addAttribute("notes", this.noteService.findAll());
+        model.addAttribute("credentials", this.credentialService.findAll(userId));
+        model.addAttribute("files", this.fileService.findAll(userId));
+        model.addAttribute("notes", this.noteService.findAll(userId));
 
         return "home";
     }
 
 
     @RequestMapping(path = "/view/{fileId}")
-    public ResponseEntity serveFile(@PathVariable("fileId") Integer fileId, Model model) throws SQLException {
+    public ResponseEntity serveFile(Authentication authentication,@PathVariable("fileId") Integer fileId, Model model) throws SQLException {
+
+
+        Integer userId = userService.getUserByName(authentication.getName()).getUserId();
 
         model.addAttribute("activeTab", "files");
-        model.addAttribute("credentials", this.credentialService.findAll());
-        model.addAttribute("files", this.fileService.findAll());
-        model.addAttribute("notes", this.noteService.findAll());
+        model.addAttribute("credentials", this.credentialService.findAll(userId));
+        model.addAttribute("files", this.fileService.findAll(userId));
+        model.addAttribute("notes", this.noteService.findAll(userId));
 
         File file = fileService.getFile(fileId);
 //        byte[] bytes = file.getFileData();
@@ -113,7 +121,9 @@ public class FileController {
 
 
     @GetMapping("/delete/{fileId}")
-    public String deleteFile(@PathVariable Integer fileId, Model model) {
+    public String deleteFile(Authentication authentication, @PathVariable Integer fileId, Model model) {
+
+        Integer userId = userService.getUserByName(authentication.getName()).getUserId();
         int result = fileService.delete(fileId);
 
         if (result >= 1) {
@@ -123,9 +133,9 @@ public class FileController {
         }
 
         model.addAttribute("activeTab", "files");
-        model.addAttribute("credentials", this.credentialService.findAll());
-        model.addAttribute("files", this.fileService.findAll());
-        model.addAttribute("notes", this.noteService.findAll());
+        model.addAttribute("credentials", this.credentialService.findAll(userId));
+        model.addAttribute("files", this.fileService.findAll(userId));
+        model.addAttribute("notes", this.noteService.findAll(userId));
         return "redirect:/home";
     }
 

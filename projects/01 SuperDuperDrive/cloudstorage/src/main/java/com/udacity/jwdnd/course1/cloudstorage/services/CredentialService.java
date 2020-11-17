@@ -2,61 +2,75 @@ package com.udacity.jwdnd.course1.cloudstorage.services;
 
 import com.udacity.jwdnd.course1.cloudstorage.controller.HomeController;
 import com.udacity.jwdnd.course1.cloudstorage.mapper.CredentialMapper;
-import com.udacity.jwdnd.course1.cloudstorage.mapper.UserMapper;
 import com.udacity.jwdnd.course1.cloudstorage.model.Credential;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import java.security.SecureRandom;
+import java.util.Base64;
 import java.util.List;
 
 @Service
 public class CredentialService {
 
+
     private CredentialMapper credentialMapper;
-    private final UserMapper userMapper;
-    private final AuthenticationService authenticationService;
-    private final UserService userService;
-    @Autowired
     private EncryptionService encryptionService;
 
-
-    public CredentialService(CredentialMapper credentialMapper, UserMapper userMapper, AuthenticationService authenticationService, UserService userService) {
+    public CredentialService(CredentialMapper credentialMapper, EncryptionService encryptionService) {
         this.credentialMapper = credentialMapper;
-        this.userMapper = userMapper;
-        this.authenticationService = authenticationService;
-        this.userService = userService;
+        this.encryptionService = encryptionService;
     }
 
     @PostConstruct
-    public void postConstruct(){
+    public void postConstruct() {
         System.out.println("Creating CredentialService bean");
     }
 
-    public void addCredential(Credential credential){
+    public Credential getCredential(Integer credentialId) {
+        Credential credential = credentialMapper.findById(credentialId);
+        String encryptedPassword = credential.getPassword();
+        String key = credential.getKey();
+        String plainTextPassword = encryptionService.decryptValue(encryptedPassword, key);
+        credential.setPassword(plainTextPassword);
+        return credential;
+    }
 
-        if(credential.getCredentialId() == null){
+    public int addCredential(Credential credential) {
+
+        SecureRandom random = new SecureRandom();
+        byte[] key = new byte[16];
+        random.nextBytes(key);
+        String encodedKey = Base64.getEncoder().encodeToString(key);
+
+        credential.setPassword(encryptionService.encryptValue(credential.getPassword(), encodedKey));
+        credential.setKey(encodedKey);
+
+        if (credential.getCredentialId() == null) {
             HomeController.status = "added";
-            credentialMapper.addCredential(credential);
-        }else
-        {
+            return credentialMapper.addCredential(credential);
+        } else {
             HomeController.status = "updated";
-            credentialMapper.update(credential);
+            return credentialMapper.update(credential);
         }
 
     }
 
-    public List<Credential> findAll(){
-        return credentialMapper.findAll();
+    public List<Credential> findAll(int userId) {
+        return credentialMapper.findAll(userId);
     }
 
-    public Credential findNoteById(Integer credentialId){
+    public Credential findNoteById(Integer credentialId) {
         return credentialMapper.findById(credentialId);
     }
 
-    public int delete(Integer credentialId){
-       return credentialMapper.delete(credentialId);
+    public int delete(Integer credentialId) {
+        return credentialMapper.delete(credentialId);
     }
 
-
+    public String getDecryptedCredentials(Integer credentialId) {
+        String decryptedPassword = credentialMapper.getDecryptedPassword(credentialId);
+        return decryptedPassword;
+    }
 }

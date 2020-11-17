@@ -2,6 +2,7 @@ package com.udacity.jwdnd.course1.cloudstorage.controller;
 
 import com.udacity.jwdnd.course1.cloudstorage.model.Note;
 import com.udacity.jwdnd.course1.cloudstorage.services.*;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -29,21 +30,26 @@ public class NoteController {
     }
 
     @PostMapping
-    public String postNote( @ModelAttribute("notes") Note note, Model model) {
+    public String postNote( Authentication authentication, @ModelAttribute("notes") Note note, Model model) {
 
+
+        Integer userId = userService.getUserByName(authentication.getName()).getUserId();
         this.noteService.addNote(note);
         model.addAttribute("message", "Note " + HomeController.status +" successfully !");
 
         model.addAttribute("activeTab", "notes");
-        model.addAttribute("credentials",this.credentialService.findAll());
-        model.addAttribute("files",this.fileService.findAll());
-        model.addAttribute("notes", this.noteService.findAll());
+        model.addAttribute("credentials",this.credentialService.findAll(userId));
+        model.addAttribute("files",this.fileService.findAll(userId));
+        model.addAttribute("notes", this.noteService.findAll(userId));
         return "home";
     }
 
 
     @GetMapping("/delete/{noteId}")
-    public String deleteNote(@PathVariable Integer noteId,AuthenticationService authenticationService, Model model) {
+    public String deleteNote(Authentication authentication, @PathVariable Integer noteId, Model model) {
+
+
+        Integer userId = userService.getUserByName(authentication.getName()).getUserId();
         int result = noteService.delete(noteId);
 
         if (result >= 1) {
@@ -52,9 +58,9 @@ public class NoteController {
             model.addAttribute("message", "Unsuccessfully to delete the Note !");
         }
         model.addAttribute("activeTab", "notes");
-        model.addAttribute("credentials",this.credentialService.findAll());
-        model.addAttribute("files",this.fileService.findAll());
-        model.addAttribute("notes", this.noteService.findAll());
+        model.addAttribute("credentials",this.credentialService.findAll(userId));
+        model.addAttribute("files",this.fileService.findAll(userId));
+        model.addAttribute("notes", this.noteService.findAll(userId));
         return "home";
     }
 
