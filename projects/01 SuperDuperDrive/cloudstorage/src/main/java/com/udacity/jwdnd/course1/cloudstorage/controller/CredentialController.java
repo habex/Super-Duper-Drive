@@ -9,7 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/credential")
+@RequestMapping("/home/credential")
 public class CredentialController {
 
     private CredentialService credentialService;
