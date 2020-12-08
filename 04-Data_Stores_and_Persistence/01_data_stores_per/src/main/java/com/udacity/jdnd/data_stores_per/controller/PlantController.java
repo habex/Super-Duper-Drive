@@ -3,7 +3,6 @@ package com.udacity.jdnd.data_stores_per.controller;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.udacity.jdnd.data_stores_per.data.Plant;
 import com.udacity.jdnd.data_stores_per.dataConvertion.PlantDTO;
-import com.udacity.jdnd.data_stores_per.dataConvertion.Views;
 import com.udacity.jdnd.data_stores_per.service.PlantService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +20,7 @@ public class PlantController {
         return convertPlantToPlantDTO(plant);
     }
 
-    @JsonView(Views.Public.class)
+    @JsonView(RecipientAndPrice.class)
     public Plant getFilteredPlant(String name) {
         return plantService.getPlantByName(name);
     }

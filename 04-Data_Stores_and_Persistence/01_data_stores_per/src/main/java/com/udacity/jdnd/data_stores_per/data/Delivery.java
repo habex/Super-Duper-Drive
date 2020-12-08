@@ -7,6 +7,15 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
+@NamedQueries({
+        @NamedQuery(
+                name = "Delivery.findAll",
+                query = "select d from Delivery d"),
+        @NamedQuery(
+                name = "Delivery.findByName",
+                query = "select d from Delivery d where d.name = :name")
+})
+
 @Entity
 public class Delivery {
 
@@ -25,7 +34,7 @@ public class Delivery {
     @Type(type = "yes_no")
     private Boolean completed;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "delivery",cascade = CascadeType.REMOVE)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "delivery", cascade = CascadeType.ALL)
     private List<Plant> plants;
 
     public Delivery() {

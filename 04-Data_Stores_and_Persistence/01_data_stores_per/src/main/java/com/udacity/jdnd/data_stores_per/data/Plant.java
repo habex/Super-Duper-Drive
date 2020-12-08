@@ -5,6 +5,7 @@ import com.udacity.jdnd.data_stores_per.dataConvertion.Views;
 import org.hibernate.annotations.Nationalized;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -14,13 +15,13 @@ public class Plant {
     @GeneratedValue
     private Long id;
 
-    @Nationalized
     @JsonView(Views.Public.class)
+    @Nationalized
     private String name;
 
+    @JsonView(Views.Public.class)
     @Column( precision = 12, scale = 4)
-    @JsonView(Views.class)
-    private Double price;
+    private BigDecimal price;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "delivery_id")
@@ -45,11 +46,11 @@ public class Plant {
         this.name = name;
     }
 
-    public Double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
