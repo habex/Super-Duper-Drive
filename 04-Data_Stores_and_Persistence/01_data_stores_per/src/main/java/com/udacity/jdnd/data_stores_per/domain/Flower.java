@@ -1,7 +1,4 @@
-package com.udacity.jdnd.data_stores_per.data;
-
-import org.hibernate.annotations.Nationalized;
-import org.hibernate.annotations.Type;
+package com.udacity.jdnd.data_stores_per.domain;
 
 import javax.persistence.*;
 

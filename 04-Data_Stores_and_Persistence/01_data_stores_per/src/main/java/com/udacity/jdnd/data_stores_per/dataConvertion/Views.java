@@ -1,6 +1,6 @@
 package com.udacity.jdnd.data_stores_per.dataConvertion;
 
-public interface Views {
-    public class Public {
+public class Views {
+    public interface Public {
     }
 }

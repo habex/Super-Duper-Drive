@@ -1,4 +1,4 @@
-package com.udacity.jdnd.data_stores_per.data;
+package com.udacity.jdnd.data_stores_per.domain;
 
 public class Shrub extends Plant{
 

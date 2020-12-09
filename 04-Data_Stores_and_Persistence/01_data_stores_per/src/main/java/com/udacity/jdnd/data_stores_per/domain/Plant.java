@@ -1,4 +1,4 @@
-package com.udacity.jdnd.data_stores_per.data;
+package com.udacity.jdnd.data_stores_per.domain;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.udacity.jdnd.data_stores_per.dataConvertion.Views;
@@ -6,6 +6,7 @@ import org.hibernate.annotations.Nationalized;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)

@@ -1,20 +1,13 @@
-package com.udacity.jdnd.data_stores_per.data;
+package com.udacity.jdnd.data_stores_per.domain;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.udacity.jdnd.data_stores_per.dataConvertion.Views;
 import org.hibernate.annotations.Nationalized;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
-
-@NamedQueries({
-        @NamedQuery(
-                name = "Delivery.findAll",
-                query = "select d from Delivery d"),
-        @NamedQuery(
-                name = "Delivery.findByName",
-                query = "select d from Delivery d where d.name = :name")
-})
 
 @Entity
 public class Delivery {
@@ -24,22 +17,27 @@ public class Delivery {
     private Long id;
 
     @Nationalized
+    @JsonView(Views.Public.class)
     private String name;
 
     @Column(name = "address_full", length = 500)
+    @JsonView(Views.Public.class)
     private String address;
 
+
+    @JsonView(Views.Public.class)
     private LocalDateTime deliveryTime;
 
     @Type(type = "yes_no")
-    private Boolean completed;
+
+    @JsonView(Views.Public.class)
+    private Boolean completed = false;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "delivery", cascade = CascadeType.ALL)
     private List<Plant> plants;
 
     public Delivery() {
     }
-
 
     public Long getId() {
         return id;
