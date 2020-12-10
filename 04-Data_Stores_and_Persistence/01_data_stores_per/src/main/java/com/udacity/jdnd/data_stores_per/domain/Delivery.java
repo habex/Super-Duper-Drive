@@ -9,6 +9,15 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
+
+@NamedQueries({
+        @NamedQuery(name = "Delivery.findByName",
+                query = "select d from Delivery d where d.name = :name"),
+
+        @NamedQuery(name = "Delivery.findAll",
+                query = "select d from Delivery d")
+})
+
 @Entity
 public class Delivery {
 
@@ -29,7 +38,6 @@ public class Delivery {
     private LocalDateTime deliveryTime;
 
     @Type(type = "yes_no")
-
     @JsonView(Views.Public.class)
     private Boolean completed = false;
 
@@ -85,5 +93,17 @@ public class Delivery {
 
     public void setPlants(List<Plant> plants) {
         this.plants = plants;
+    }
+
+    @Override
+    public String toString() {
+        return "Delivery{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", deliveryTime=" + deliveryTime +
+                ", completed=" + completed +
+                ", plants=" + plants +
+                '}';
     }
 }

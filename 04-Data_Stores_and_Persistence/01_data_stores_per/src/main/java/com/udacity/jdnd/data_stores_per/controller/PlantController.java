@@ -30,6 +30,12 @@ public class PlantController {
         return plantService.findAll();
     }
 
+    @GetMapping("/{id}")
+    @JsonView(Views.Public.class)
+    public Plant getPlant(@PathVariable Long id) {
+        return plantService.findById(id);
+    }
+
     @GetMapping("/priceLessThan/{price}")
     @JsonView(Views.Public.class)
     public List<Plant> plantsCheaperThan(@PathVariable BigDecimal price) {

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PlantService {
@@ -18,12 +19,17 @@ public class PlantService {
         return plantRepository.save(plant).getId();
     }
 
+    public Plant findById(Long id){
+        return plantRepository.findById(id).get();
+    }
+
     public List<Plant> findAll() {
         return plantRepository.findAll();
     }
 
     public Boolean delivered(Long id){
         return plantRepository.existsPlantByIdAndDeliveryCompleted(id,true);
+       //return plantRepository.deliveryCompleted(id);
     }
 
     public List<Plant> findPlantsBelowPrice(BigDecimal price) {

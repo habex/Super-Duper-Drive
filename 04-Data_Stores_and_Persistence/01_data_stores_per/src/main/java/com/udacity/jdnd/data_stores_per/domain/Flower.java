@@ -18,4 +18,10 @@ public class Flower extends Plant{
         this.color = color;
     }
 
+    @Override
+    public String toString() {
+        return "Flower{" +
+                "color='" + color + '\'' +
+                '}';
+    }
 }

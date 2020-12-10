@@ -9,20 +9,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="19db9c88-154d-4e52-8e6f-b67bb91fd1ec" name="Default Changelist" comment="SuperDuper first Commit">
-      <change afterPath="$PROJECT_DIR$/cloudstorage/src/main/java/com/udacity/jwdnd/course1/cloudstorage/services/FileService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../01-spring-boot/17 chat-final-review-unitTest-selenium/src/main/java/com/udacity/jwdnd/c1/review/model/ChatForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../01-spring-boot/17 chat-final-review-unitTest-selenium/src/main/java/com/udacity/jwdnd/c1/review/model/ChatForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../01-spring-boot/17 chat-final-review-unitTest-selenium/src/main/java/com/udacity/jwdnd/c1/review/model/ChatMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../01-spring-boot/17 chat-final-review-unitTest-selenium/src/main/java/com/udacity/jwdnd/c1/review/model/ChatMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../01-spring-boot/17 chat-final-review-unitTest-selenium/src/main/java/com/udacity/jwdnd/c1/review/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../01-spring-boot/17 chat-final-review-unitTest-selenium/src/main/java/com/udacity/jwdnd/c1/review/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloudstorage/src/main/java/com/udacity/jwdnd/course1/cloudstorage/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloudstorage/src/main/java/com/udacity/jwdnd/course1/cloudstorage/controller/HomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloudstorage/src/main/java/com/udacity/jwdnd/course1/cloudstorage/mapper/FileMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloudstorage/src/main/java/com/udacity/jwdnd/course1/cloudstorage/mapper/FileMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloudstorage/src/main/java/com/udacity/jwdnd/course1/cloudstorage/mapper/NoteMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloudstorage/src/main/java/com/udacity/jwdnd/course1/cloudstorage/mapper/NoteMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloudstorage/src/main/java/com/udacity/jwdnd/course1/cloudstorage/model/FileUploadForm.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloudstorage/src/main/java/com/udacity/jwdnd/course1/cloudstorage/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloudstorage/src/main/java/com/udacity/jwdnd/course1/cloudstorage/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloudstorage/src/main/java/com/udacity/jwdnd/course1/cloudstorage/services/FileUploadService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloudstorage/src/main/java/com/udacity/jwdnd/course1/cloudstorage/services/NoteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloudstorage/src/main/java/com/udacity/jwdnd/course1/cloudstorage/services/NoteService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloudstorage/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/cloudstorage/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloudstorage/src/main/resources/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/cloudstorage/src/main/resources/schema.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloudstorage/src/main/resources/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/cloudstorage/src/main/resources/templates/home.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../04-Data_Stores_and_Persistence/01_data_stores_per/src/main/java/com/udacity/jdnd/data_stores_per/config/DatasourceConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../04-Data_Stores_and_Persistence/01_data_stores_per/src/main/java/com/udacity/jdnd/data_stores_per/domain/Candy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../04-Data_Stores_and_Persistence/01_data_stores_per/src/main/java/com/udacity/jdnd/data_stores_per/repository/DeliveryRepository2.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../04-Data_Stores_and_Persistence/01_data_stores_per/src/main/resources/data.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../04-Data_Stores_and_Persistence/01_data_stores_per/src/main/resources/schema.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../04-Data_Stores_and_Persistence/01_data_stores_per/src/test/java/com/udacity/jdnd/data_stores_per/repository/PlantRepositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../04-Data_Stores_and_Persistence/01_data_stores_per/src/main/java/com/udacity/jdnd/data_stores_per/controller/DeliveryController1.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../04-Data_Stores_and_Persistence/01_data_stores_per/src/main/java/com/udacity/jdnd/data_stores_per/controller/DeliveryController2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../04-Data_Stores_and_Persistence/01_data_stores_per/src/main/java/com/udacity/jdnd/data_stores_per/controller/PlantController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../04-Data_Stores_and_Persistence/01_data_stores_per/src/main/java/com/udacity/jdnd/data_stores_per/controller/PlantController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../04-Data_Stores_and_Persistence/01_data_stores_per/src/main/java/com/udacity/jdnd/data_stores_per/domain/Delivery.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../04-Data_Stores_and_Persistence/01_data_stores_per/src/main/java/com/udacity/jdnd/data_stores_per/domain/Delivery.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../04-Data_Stores_and_Persistence/01_data_stores_per/src/main/java/com/udacity/jdnd/data_stores_per/domain/Flower.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../04-Data_Stores_and_Persistence/01_data_stores_per/src/main/java/com/udacity/jdnd/data_stores_per/domain/Flower.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../04-Data_Stores_and_Persistence/01_data_stores_per/src/main/java/com/udacity/jdnd/data_stores_per/domain/Plant.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../04-Data_Stores_and_Persistence/01_data_stores_per/src/main/java/com/udacity/jdnd/data_stores_per/domain/Plant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../04-Data_Stores_and_Persistence/01_data_stores_per/src/main/java/com/udacity/jdnd/data_stores_per/domain/Shrub.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../04-Data_Stores_and_Persistence/01_data_stores_per/src/main/java/com/udacity/jdnd/data_stores_per/domain/Shrub.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../04-Data_Stores_and_Persistence/01_data_stores_per/src/main/java/com/udacity/jdnd/data_stores_per/repository/DeliveryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../04-Data_Stores_and_Persistence/01_data_stores_per/src/main/java/com/udacity/jdnd/data_stores_per/repository/DeliveryRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../04-Data_Stores_and_Persistence/01_data_stores_per/src/main/java/com/udacity/jdnd/data_stores_per/repository/DeliveryRepository1.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../04-Data_Stores_and_Persistence/01_data_stores_per/src/main/java/com/udacity/jdnd/data_stores_per/service/DeliveryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../04-Data_Stores_and_Persistence/01_data_stores_per/src/main/java/com/udacity/jdnd/data_stores_per/service/DeliveryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../04-Data_Stores_and_Persistence/01_data_stores_per/src/main/java/com/udacity/jdnd/data_stores_per/service/DeliveryService1.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../04-Data_Stores_and_Persistence/01_data_stores_per/src/main/java/com/udacity/jdnd/data_stores_per/service/DeliveryService2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../04-Data_Stores_and_Persistence/01_data_stores_per/src/main/java/com/udacity/jdnd/data_stores_per/service/PlantService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../04-Data_Stores_and_Persistence/01_data_stores_per/src/main/java/com/udacity/jdnd/data_stores_per/service/PlantService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,8 +73,9 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/cloudstorage/src/main/java/com/udacity/jwdnd/course1/cloudstorage" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/cloudstorage" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />

@@ -1,5 +1,8 @@
 package com.udacity.jdnd.data_stores_per.domain;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Shrub extends Plant{
 
     private Long heightCm;
@@ -23,5 +26,13 @@ public class Shrub extends Plant{
 
     public void setWeightCm(Long weightCm) {
         this.weightCm = weightCm;
+    }
+
+    @Override
+    public String toString() {
+        return "Shrub{" +
+                "heightCm=" + heightCm +
+                ", weightCm=" + weightCm +
+                '}';
     }
 }
