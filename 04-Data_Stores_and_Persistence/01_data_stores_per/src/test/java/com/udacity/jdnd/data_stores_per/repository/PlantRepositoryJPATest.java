@@ -1,7 +1,7 @@
 package com.udacity.jdnd.data_stores_per.repository;
 
-import com.udacity.jdnd.data_stores_per.domain.Delivery;
-import com.udacity.jdnd.data_stores_per.domain.Plant;
+import com.udacity.jdnd.data_stores_per.data.Delivery;
+import com.udacity.jdnd.data_stores_per.data.Plant;
 import org.assertj.core.util.Lists;
 import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
@@ -13,21 +13,19 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import java.math.BigDecimal;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 @DataJpaTest
-public class PlantRepositoryTest {
+public class PlantRepositoryJPATest {
 
     @Autowired
     private TestEntityManager entityManager;
 
     @Autowired
-    private PlantRepository plantRepository;
+    private PlantRepository_JPA plantRepository;
 
     @Test
     public void testPriceLessThan() {
 
-        BigDecimal bigDecimal = new BigDecimal(15);
+        BigDecimal bigDecimal = new BigDecimal(25);
 
         Plant plant1 = new Plant();
         plant1.setPrice(BigDecimal.valueOf(12));

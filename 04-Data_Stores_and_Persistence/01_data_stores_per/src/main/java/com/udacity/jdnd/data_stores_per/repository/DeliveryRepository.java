@@ -1,8 +1,8 @@
 package com.udacity.jdnd.data_stores_per.repository;
 
 import com.udacity.jdnd.data_stores_per.controller.RecipientAndPrice;
-import com.udacity.jdnd.data_stores_per.domain.Delivery;
-import com.udacity.jdnd.data_stores_per.domain.Plant;
+import com.udacity.jdnd.data_stores_per.data.Delivery;
+import com.udacity.jdnd.data_stores_per.data.Plant;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 

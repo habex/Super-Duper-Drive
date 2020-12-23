@@ -1,4 +1,4 @@
-package com.udacity.jdnd.data_stores_per.domain;
+package com.udacity.jdnd.data_stores_per.data;
 
 import javax.persistence.*;
 

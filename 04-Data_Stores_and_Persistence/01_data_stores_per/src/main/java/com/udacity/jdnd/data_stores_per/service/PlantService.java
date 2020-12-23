@@ -1,19 +1,18 @@
 package com.udacity.jdnd.data_stores_per.service;
 
-import com.udacity.jdnd.data_stores_per.domain.Plant;
-import com.udacity.jdnd.data_stores_per.repository.PlantRepository;
+import com.udacity.jdnd.data_stores_per.data.Plant;
+import com.udacity.jdnd.data_stores_per.repository.PlantRepository_JPA;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class PlantService {
 
     @Autowired
-    PlantRepository plantRepository;
+    PlantRepository_JPA plantRepository;
 
     public Long save(Plant plant){
         return plantRepository.save(plant).getId();

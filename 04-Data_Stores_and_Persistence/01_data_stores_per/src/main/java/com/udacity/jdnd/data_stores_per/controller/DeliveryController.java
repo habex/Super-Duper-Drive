@@ -2,7 +2,7 @@ package com.udacity.jdnd.data_stores_per.controller;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.udacity.jdnd.data_stores_per.dataConvertion.Views;
-import com.udacity.jdnd.data_stores_per.domain.Delivery;
+import com.udacity.jdnd.data_stores_per.data.Delivery;
 import com.udacity.jdnd.data_stores_per.service.DeliveryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

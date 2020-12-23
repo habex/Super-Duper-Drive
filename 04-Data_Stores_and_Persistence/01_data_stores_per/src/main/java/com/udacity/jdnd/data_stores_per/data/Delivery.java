@@ -1,9 +1,11 @@
-package com.udacity.jdnd.data_stores_per.domain;
+package com.udacity.jdnd.data_stores_per.data;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.udacity.jdnd.data_stores_per.dataConvertion.Views;
+import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.Nationalized;
 import org.hibernate.annotations.Type;
+import org.springframework.context.annotation.Lazy;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -32,7 +34,6 @@ public class Delivery {
     @Column(name = "address_full", length = 500)
     @JsonView(Views.Public.class)
     private String address;
-
 
     @JsonView(Views.Public.class)
     private LocalDateTime deliveryTime;

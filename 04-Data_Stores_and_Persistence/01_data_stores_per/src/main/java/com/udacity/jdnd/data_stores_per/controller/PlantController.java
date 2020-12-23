@@ -1,7 +1,7 @@
 package com.udacity.jdnd.data_stores_per.controller;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import com.udacity.jdnd.data_stores_per.domain.Plant;
+import com.udacity.jdnd.data_stores_per.data.Plant;
 import com.udacity.jdnd.data_stores_per.dataConvertion.PlantDTO;
 import com.udacity.jdnd.data_stores_per.dataConvertion.Views;
 import com.udacity.jdnd.data_stores_per.service.PlantService;

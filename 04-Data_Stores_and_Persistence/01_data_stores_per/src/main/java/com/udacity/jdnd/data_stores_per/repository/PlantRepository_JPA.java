@@ -1,7 +1,7 @@
 package com.udacity.jdnd.data_stores_per.repository;
 
 
-import com.udacity.jdnd.data_stores_per.domain.Plant;
+import com.udacity.jdnd.data_stores_per.data.Plant;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 @Repository
-public interface PlantRepository extends JpaRepository<Plant,Long> {
+public interface PlantRepository_JPA extends JpaRepository<Plant,Long> {
 
     //check if a plant by this id exists where delivery has been completed
     Boolean existsPlantByIdAndDeliveryCompleted(Long id, Boolean delivered);

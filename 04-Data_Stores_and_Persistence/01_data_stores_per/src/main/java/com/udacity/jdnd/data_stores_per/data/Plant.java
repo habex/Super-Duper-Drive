@@ -1,4 +1,4 @@
-package com.udacity.jdnd.data_stores_per.domain;
+package com.udacity.jdnd.data_stores_per.data;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.udacity.jdnd.data_stores_per.dataConvertion.Views;
