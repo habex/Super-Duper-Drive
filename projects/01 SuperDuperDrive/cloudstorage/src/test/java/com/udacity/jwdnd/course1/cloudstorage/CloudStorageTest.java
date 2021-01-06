@@ -2,12 +2,8 @@ package com.udacity.jwdnd.course1.cloudstorage;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.*;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
 
@@ -65,7 +61,7 @@ public class CloudStorageTest {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.login(username, password);
 
-        HomePage homePage = new HomePage(driver);
+        HomePage home = new HomePage(driver);
 
     }
 
@@ -103,16 +99,17 @@ public class CloudStorageTest {
         Thread.sleep(2000);
 
         notesTabPage.noteTab.click();
-
+        Thread.sleep(500);
         notesTabPage.addNoteButton.click();
-
+        Thread.sleep(500);
         notesTabPage.postNote("First Title", "* First Description 01 \n* First Description 02 \n* First Description 03 \n* First Description 04 \n* First Description 05 \n");
 
         Thread.sleep(2000);
         notesTabPage.noteSubmit.click();
 
+        Thread.sleep(500);
         notesTabPage.addNoteButton.click();
-
+        Thread.sleep(500);
         notesTabPage.postNote("Second Title", "- Second Description 01 \n- Second Description 02 \n- Second Description 03 \n- Second Description 04 \n");
 
         Thread.sleep(2000);
@@ -126,7 +123,7 @@ public class CloudStorageTest {
 
         Thread.sleep(2000);
         notesTabPage.noteEdit.click();
-
+        Thread.sleep(500);
         notesTabPage.postNote("First Title After Edit", "First Description After Edit");
 
         Thread.sleep(2000);
@@ -146,16 +143,16 @@ public class CloudStorageTest {
     private void credentialAdd(CredentialsTabPage credentialsTabPage) throws InterruptedException {
 
         credentialsTabPage.navCredential.click();
-
+        Thread.sleep(500);
         credentialsTabPage.addCredential.click();
-
+        Thread.sleep(500);
         credentialsTabPage.credentialNote("https://www.youtube.com", "User One", "abc123");
 
         Thread.sleep(2000);
         credentialsTabPage.credentialSave.click();
-
+        Thread.sleep(500);
         credentialsTabPage.addCredential.click();
-
+        Thread.sleep(500);
         credentialsTabPage.credentialNote("https://www.google.com/", "User Two", "!@#ABC");
 
         Thread.sleep(2000);
@@ -168,7 +165,7 @@ public class CloudStorageTest {
 
         Thread.sleep(2000);
         credentialsTabPage.credentialEdit.click();
-
+        Thread.sleep(500);
         credentialsTabPage.credentialNote("https://www.udacity.com", "Student", "987654321");
 
         Thread.sleep(2000);

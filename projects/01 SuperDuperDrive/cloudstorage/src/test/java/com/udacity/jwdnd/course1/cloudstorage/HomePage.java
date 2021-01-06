@@ -6,6 +6,10 @@ import org.openqa.selenium.support.PageFactory;
 public class HomePage {
 
     public HomePage(WebDriver driver) {
-        PageFactory.initElements(driver,this);
+       setWebDriver(driver);
+    }
+
+    public void setWebDriver(WebDriver webDriver){
+        PageFactory.initElements(webDriver,this);
     }
 }
